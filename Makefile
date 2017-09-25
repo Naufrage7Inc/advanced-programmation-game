@@ -36,6 +36,7 @@ all: release
 clean: clean_release
 
 before_release: 
+	cbp2make -in game.cbp -out Makefile
 	test -d bin/Release || mkdir -p bin/Release
 	test -d $(OBJDIR_RELEASE) || mkdir -p $(OBJDIR_RELEASE)
 
