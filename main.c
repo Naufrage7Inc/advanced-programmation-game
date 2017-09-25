@@ -10,32 +10,30 @@
 
 #include "engine.h"
 #include "character.h"
+#include "map.h"
 
 
 int main()
 {
     /* Initialisation de la SDL */
-	if ( SDL_Init(SDL_INIT_VIDEO) < 0 ) {
-        fprintf(stderr, "Impossible de charger la SDL : %s\n", SDL_GetError());
-        return EXIT_FAILURE;
-	}
-
-
-	/* Création de la fenêtre */
-	SDL_Window* window = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
-    if ( window == NULL ) {
-        fprintf(stderr, "Impossible de créer la fenêtre de jeu : %s\n", SDL_GetError());
-        SDL_Quit();
+    if ( !InitSDL() ) {
         return EXIT_FAILURE;
     }
 
 
-    /* Création de la surface de la fenêtre */
-    SDL_Surface* surfaceWindow = SDL_GetWindowSurface(window);
-    if ( surfaceWindow == NULL ) {
-        fprintf(stderr, "Impossible de créer la surface de la fenêtre : %s\n", SDL_GetError());
-        SDL_DestroyWindow(window);
+	/* Création de la fenêtre */
+	SDL_Window* window = NULL;
+	if ( !CreateWindow(&window, WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE) ) {
         SDL_Quit();
+        return EXIT_FAILURE;
+	}
+
+
+    /* Création de la surface de la fenêtre */
+    SDL_Surface* surfaceWindow = NULL;
+    if ( !CreateWindowSurface(&surfaceWindow, window) ) {
+        SDL_Quit();
+        SDL_DestroyWindow(window);
         return EXIT_FAILURE;
     }
 
@@ -49,15 +47,14 @@ int main()
 		SDL_WaitEvent(&event);
 
 
-        /* Si le joueur décide de fermer la fenêtre */
+        /* Si l'utilisateur décide de fermer la fenêtre */
 		if ( event.window.event == SDL_WINDOWEVENT_CLOSE )
 			isOpen = false;
     }
 
 
 	/* Nettoyage */
-	SDL_DestroyWindow(window);
-	SDL_Quit();
+	CleanupSDL(window);
 
 
     /* Si on arrive jusqu'ici, c'est génial */
