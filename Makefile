@@ -18,18 +18,18 @@ LIBDIR =
 LIB = 
 LDFLAGS = 
 
-INC_RELEASE = $(INC)
-CFLAGS_RELEASE = $(CFLAGS) -O3 -Wextra -Wall
+INC_RELEASE = $(INC) -I/usr/local/include/
+CFLAGS_RELEASE = $(CFLAGS) -O3 -Wunreachable-code -Wextra -Wall
 RESINC_RELEASE = $(RESINC)
 RCFLAGS_RELEASE = $(RCFLAGS)
-LIBDIR_RELEASE = $(LIBDIR)
+LIBDIR_RELEASE = $(LIBDIR) -L/usr/lib/x86_64-linux-gnu/
 LIB_RELEASE = $(LIB)-lSDL2-2.0
 LDFLAGS_RELEASE = $(LDFLAGS) -s
 OBJDIR_RELEASE = obj/Release
 DEP_RELEASE = 
 OUT_RELEASE = bin/Release/game
 
-OBJ_RELEASE = $(OBJDIR_RELEASE)/main.o
+OBJ_RELEASE = $(OBJDIR_RELEASE)/character.o $(OBJDIR_RELEASE)/main.o
 
 all: release
 
@@ -45,6 +45,9 @@ release: before_release out_release after_release
 
 out_release: before_release $(OBJ_RELEASE) $(DEP_RELEASE)
 	$(LD) $(LIBDIR_RELEASE) -o $(OUT_RELEASE) $(OBJ_RELEASE)  $(LDFLAGS_RELEASE) $(LIB_RELEASE)
+
+$(OBJDIR_RELEASE)/character.o: character.c
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c character.c -o $(OBJDIR_RELEASE)/character.o
 
 $(OBJDIR_RELEASE)/main.o: main.c
 	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c main.c -o $(OBJDIR_RELEASE)/main.o
