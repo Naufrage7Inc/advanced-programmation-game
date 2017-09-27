@@ -15,7 +15,7 @@
 
 /* Structure pour représenter un personnage */
 typedef struct {
-    Coords position;
+    Coord position;
     Size size;
     SDL_Surface* surface;
     SDL_Rect srcRect;
@@ -24,7 +24,7 @@ typedef struct {
 
 
 /* Permet de créer un personnage */
-Character CharacterCreate(const SDL_Surface* surface, const Coords position, const Size size);
+Character CharacterCreate( const SDL_Surface* surface, const Coord position, const Size size );
 
 
 #endif // CHARACTER_H_INCLUDED
