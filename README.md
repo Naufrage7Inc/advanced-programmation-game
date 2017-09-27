@@ -20,7 +20,7 @@ Ce qui sera bientôt possible :
   
   
 ### Module Engine
-Le module Engine apporte plusieurs fonctions facilitant la gestion d'erreurs, l'utilisation de la SDL, ... Un ensemble de fonctions bien pratiques !
+Le module Engine apporte plusieurs fonctions facilitant la gestion d'erreurs, l'utilisation de la SDL, ... Un ensemble de fonctions bien pratique !
   
   
 ### Module Character
