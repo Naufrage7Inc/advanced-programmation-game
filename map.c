@@ -34,6 +34,11 @@ Map MapCreate( const char* imagePath ) {
 }
 
 
+void MapDraw(  const Map* map, SDL_Surface* surface ) {
+    SDL_BlitSurface( map->surface, NULL, surface, NULL );
+}
+
+
 void MapFree( Map* map ) {
     for ( int y = 0; y < N_BLOCKS_Y; y++ ) {
         for ( int x = 0; x < N_BLOCKS_X; x++ ) {

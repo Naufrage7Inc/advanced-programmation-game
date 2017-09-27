@@ -19,6 +19,10 @@ typedef struct {
 Map MapCreate( const char* imagePath );
 
 
+/* Dessine la carte sur la surface ( généralement l'écran ) */
+void MapDraw( const Map* map, SDL_Surface* surface );
+
+
 /* Libère la mémoire ( notamment les SDL_Surface* des tiles ) */
 void MapFree( Map* map );
 
