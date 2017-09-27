@@ -17,6 +17,9 @@ typedef struct {
 
 /* Permet de créer une carte */
 Map MapCreate( const char* imagePath );
+
+
+/* Libère la mémoire ( notamment les SDL_Surface* des tiles ) */
 void MapFree( Map* map );
 
 #endif // MAP_H_INCLUDED
