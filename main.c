@@ -39,8 +39,12 @@ int main() {
 
 
     Map map = MapCreate( "images/tileset.bmp" );
-    SDL_BlitSurface( map.surface, NULL, surfaceWindow, NULL );
+    MapDraw( &map, surfaceWindow );
 
+
+    Coord coord = {1, 0};
+    Character character = CharacterCreate( "images/hero.bmp", coord );
+    CharacterDraw( &character, surfaceWindow );
 
     /* Boucle d'évènements */
     bool isOpen = true;
