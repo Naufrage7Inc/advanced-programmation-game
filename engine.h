@@ -7,11 +7,11 @@
 #include <SDL2/SDL.h>
 
 
-/* Structure pour contenir une coordonée représentée par un point X et un point Y */
+/* Structure pour contenir une coordonnée représentée par un point X et un point Y */
 typedef struct {
     int x;
     int y;
-} Coords;
+} Coord;
 
 
 /* Strucutre pour contenir une taille représentée par sa longueur et sa hauteur */
@@ -26,18 +26,31 @@ bool InitSDL();
 
 
 /* Permet de créer une fenêtre graphique */
-bool CreateWindow(SDL_Window** window, const int width, const int height, const char* title);
+bool CreateWindow( SDL_Window** window, const int width, const int height, const char* title );
 
 
 /* Permet de créer la surface de la fenêtre */
-bool CreateWindowSurface(SDL_Surface** surface, const SDL_Window* window);
+bool CreateWindowSurface( SDL_Surface** surface, const SDL_Window* window );
 
 
 /* Permet de nettoyer la fenêtre et de décharger la SDL */
-void CleanupSDL(SDL_Window* window);
+void CleanupSDL( SDL_Window* window );
 
 
 /* Permet de charger une image en mémoire */
-SDL_Surface* LoadBMP(const char* imagePath);
+SDL_Surface* LoadBMP( const char* imagePath );
+
+
+/* Permet de créer une coordonnée */
+Coord CoordCreate( const int x, const int y );
+
+
+/* Permet de créer une coordonnée */
+Size SizeCreate( const int w, const int h );
+
+
+/* Permet de créer la surface d'un bloc */
+SDL_Surface* SurfaceGetResource( const SDL_Surface* surface, const int nTilesX, const int id );
+
 
 #endif // ENGINE_H_INCLUDED
