@@ -46,9 +46,13 @@ int main() {
 
     /* Boucle d'évènements */
     bool isOpen = true;
+    bool mayUpdateScreen = false;
+    bool firstTime = true;
     SDL_Event event;
 
     while ( isOpen ) {
+        mayUpdateScreen = false;
+
         /* SDL_WaitEvent est bloquant */
         SDL_WaitEvent( &event );
 
@@ -63,26 +67,34 @@ int main() {
             switch ( event.key.keysym.sym ) {
             case SDLK_LEFT:
                 CharacterMove( &character, LEFT );
+                mayUpdateScreen = true;
                 break;
             case SDLK_RIGHT:
                 CharacterMove( &character, RIGHT );
+                mayUpdateScreen = true;
                 break;
             case SDLK_UP:
                 CharacterMove( &character, UP );
+                mayUpdateScreen = true;
                 break;
             case SDLK_DOWN:
                 CharacterMove( &character, DOWN );
+                mayUpdateScreen = true;
                 break;
             }
         }
 
 
-        MapDraw( &map, surfaceWindow );
-        CharacterDraw( &character, surfaceWindow );
-
-
         /* Mise à jour de la fenêtre */
-        SDL_UpdateWindowSurface( window );
+        if ( mayUpdateScreen || firstTime ) {
+            if ( firstTime )
+                firstTime = false;
+
+            MapDraw( &map, surfaceWindow );
+            CharacterDraw( &character, surfaceWindow );
+
+            SDL_UpdateWindowSurface( window );
+        }
     }
 
 
