@@ -39,12 +39,10 @@ int main() {
 
 
     Map map = MapCreate( "images/tileset.bmp" );
-    MapDraw( &map, surfaceWindow );
 
-
-    Coord coord = {1, 0};
+    Coord coord = {1, 1};
     Character character = CharacterCreate( "images/hero.bmp", coord );
-    CharacterDraw( &character, surfaceWindow );
+
 
     /* Boucle d'évènements */
     bool isOpen = true;
@@ -58,6 +56,29 @@ int main() {
         /* Si l'utilisateur décide de fermer la fenêtre */
         if ( event.window.event == SDL_WINDOWEVENT_CLOSE )
             isOpen = false;
+
+
+        switch ( event.type ) {
+        case SDL_KEYDOWN:
+            switch ( event.key.keysym.sym ) {
+            case SDLK_LEFT:
+                CharacterMove( &character, LEFT );
+                break;
+            case SDLK_RIGHT:
+                CharacterMove( &character, RIGHT );
+                break;
+            case SDLK_UP:
+                CharacterMove( &character, UP );
+                break;
+            case SDLK_DOWN:
+                CharacterMove( &character, DOWN );
+                break;
+            }
+        }
+
+
+        MapDraw( &map, surfaceWindow );
+        CharacterDraw( &character, surfaceWindow );
 
 
         /* Mise à jour de la fenêtre */

@@ -30,4 +30,8 @@ Character CharacterCreate( const char* imagePath, const Coord position );
 void CharacterDraw( const Character* character, SDL_Surface* surface );
 
 
+/* Permet de déplacer un personnage sur la carte */
+void CharacterMove( Character* character, int direction );
+
+
 #endif // CHARACTER_H_INCLUDED
