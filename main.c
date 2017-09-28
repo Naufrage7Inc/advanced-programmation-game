@@ -1,5 +1,4 @@
-#define WINDOW_WIDTH 768
-#define WINDOW_HEIGHT 576
+
 #define WINDOW_TITLE "Projet programmation avancée"
 
 #include <stdio.h>

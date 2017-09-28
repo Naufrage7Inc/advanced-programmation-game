@@ -29,7 +29,7 @@ OBJDIR_RELEASE = obj/Release
 DEP_RELEASE = 
 OUT_RELEASE = bin/Release/game
 
-OBJ_RELEASE = $(OBJDIR_RELEASE)/character.o $(OBJDIR_RELEASE)/engine.o $(OBJDIR_RELEASE)/main.o $(OBJDIR_RELEASE)/map.o
+OBJ_RELEASE = $(OBJDIR_RELEASE)/character.o $(OBJDIR_RELEASE)/engine.o $(OBJDIR_RELEASE)/main.o $(OBJDIR_RELEASE)/map.o $(OBJDIR_RELEASE)/tile.o
 
 all: release
 
@@ -58,6 +58,9 @@ $(OBJDIR_RELEASE)/main.o: main.c
 
 $(OBJDIR_RELEASE)/map.o: map.c
 	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c map.c -o $(OBJDIR_RELEASE)/map.o
+
+$(OBJDIR_RELEASE)/tile.o: tile.c
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c tile.c -o $(OBJDIR_RELEASE)/tile.o
 
 clean_release: 
 	rm -f $(OBJ_RELEASE) $(OUT_RELEASE)
