@@ -67,6 +67,16 @@ SDL_Surface* SurfaceGetResource( const SDL_Surface* surface, const int nTilesX, 
     SDL_Rect src = { x, y, SIZE_BLOCK, SIZE_BLOCK };
     SDL_Rect dst = {0, 0, SIZE_BLOCK, SIZE_BLOCK};
 
+
+
+    SDL_Surface* returnSurface = SurfaceCreate( SIZE_BLOCK, SIZE_BLOCK );
+    SDL_BlitSurface( surface, &src, returnSurface, &dst );
+
+    return returnSurface;
+}
+
+
+SDL_Surface* SurfaceCreate( const int w, const int h ) {
     Uint32 rmask, gmask, bmask, amask;
 
 #if SDL_BYTEORDER == SDL_BIG_ENDIAN
@@ -81,9 +91,5 @@ SDL_Surface* SurfaceGetResource( const SDL_Surface* surface, const int nTilesX, 
     amask = 0xff000000;
 #endif
 
-
-    SDL_Surface* returnSurface = SDL_CreateRGBSurface( NULL, SIZE_BLOCK, SIZE_BLOCK, 32, rmask, gmask, bmask, amask );
-    SDL_BlitSurface( surface, &src, returnSurface, &dst );
-
-    return returnSurface;
+    return SDL_CreateRGBSurface( NULL, w, h, 32, rmask, gmask, bmask, amask );
 }

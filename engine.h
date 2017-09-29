@@ -53,4 +53,8 @@ Size SizeCreate( const int w, const int h );
 SDL_Surface* SurfaceGetResource( const SDL_Surface* surface, const int nTilesX, const int id );
 
 
+/* Permet de créer une surface vide */
+SDL_Surface* SurfaceCreate( const int w, const int h );
+
+
 #endif // ENGINE_H_INCLUDED
