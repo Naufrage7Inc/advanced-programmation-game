@@ -30,7 +30,7 @@ bool CreateWindow( SDL_Window** window, const int width, const int height, const
 
 
 /* Permet de créer la surface de la fenêtre */
-bool CreateWindowSurface( SDL_Surface** surface, const SDL_Window* window );
+bool CreateWindowSurface( SDL_Surface** surface, SDL_Window* window );
 
 
 /* Permet de nettoyer la fenêtre et de décharger la SDL */
@@ -50,7 +50,7 @@ Size SizeCreate( const int w, const int h );
 
 
 /* Permet de créer la surface d'un bloc */
-SDL_Surface* SurfaceGetResource( const SDL_Surface* surface, const int nTilesX, const int id );
+SDL_Surface* SurfaceGetResource( SDL_Surface* surface, const int nTilesX, const int id );
 
 
 /* Permet de créer une surface vide */

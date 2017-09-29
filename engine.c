@@ -23,7 +23,7 @@ bool CreateWindow( SDL_Window** window, const int width, const int height, const
 }
 
 
-bool CreateWindowSurface( SDL_Surface** surface, const SDL_Window* window ) {
+bool CreateWindowSurface( SDL_Surface** surface, SDL_Window* window ) {
     *surface = SDL_GetWindowSurface( window );
     if ( surface == NULL ) {
         fprintf( stderr, "Impossible de créer la surface de la fenêtre : %s\n", SDL_GetError() );
@@ -51,16 +51,18 @@ SDL_Surface* LoadBMP( const char* imagePath ) {
 
 
 Coord CoordCreate( const int x, const int y ) {
-    /* TODO */
+    Coord coord = { x, y };
+    return coord;
 }
 
 
 Size SizeCreate( const int w, const int h ) {
-    /* TODO */
+    Size size = { w, h };
+    return size;
 }
 
 
-SDL_Surface* SurfaceGetResource( const SDL_Surface* surface, const int nTilesX, const int id ) {
+SDL_Surface* SurfaceGetResource( SDL_Surface* surface, const int nTilesX, const int id ) {
     int x = id % nTilesX * SIZE_BLOCK;
     int y = id / nTilesX * SIZE_BLOCK;
 
@@ -79,17 +81,17 @@ SDL_Surface* SurfaceGetResource( const SDL_Surface* surface, const int nTilesX, 
 SDL_Surface* SurfaceCreate( const int w, const int h ) {
     Uint32 rmask, gmask, bmask, amask;
 
-#if SDL_BYTEORDER == SDL_BIG_ENDIAN
-    rmask = 0xff000000;
-    gmask = 0x00ff0000;
-    bmask = 0x0000ff00;
-    amask = 0x000000ff;
-#else
-    rmask = 0x000000ff;
-    gmask = 0x0000ff00;
-    bmask = 0x00ff0000;
-    amask = 0xff000000;
-#endif
+    #if SDL_BYTEORDER == SDL_BIG_ENDIAN
+        rmask = 0xff000000;
+        gmask = 0x00ff0000;
+        bmask = 0x0000ff00;
+        amask = 0x000000ff;
+    #else
+        rmask = 0x000000ff;
+        gmask = 0x0000ff00;
+        bmask = 0x00ff0000;
+        amask = 0xff000000;
+    #endif
 
-    return SDL_CreateRGBSurface( NULL, w, h, 32, rmask, gmask, bmask, amask );
+    return SDL_CreateRGBSurface( 0, w, h, 32, rmask, gmask, bmask, amask );
 }

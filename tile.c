@@ -1,6 +1,11 @@
 #include "tile.h"
 
 
-Tile TileCreate( const SDL_Surface* surface, const int type )  {
+Tile TileCreate( SDL_Surface* surface, const int type )  {
+    /* TODO */
+    Tile tile;
+    tile.surface = surface;
+    tile.type = type;
 
+    return tile;
 }

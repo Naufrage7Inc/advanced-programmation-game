@@ -26,4 +26,5 @@ void MapDraw( const Map* map, SDL_Surface* surface );
 /* Libère la mémoire ( notamment les SDL_Surface* des tiles ) */
 void MapFree( Map* map );
 
+
 #endif // MAP_H_INCLUDED

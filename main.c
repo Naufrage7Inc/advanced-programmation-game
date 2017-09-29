@@ -1,6 +1,3 @@
-
-#define WINDOW_TITLE "Projet programmation avancée"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>

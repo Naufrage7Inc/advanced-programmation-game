@@ -4,6 +4,8 @@
 
 #include <SDL2/SDL.h>
 
+
+/* Structure pour contenir un bloc de terrain */
 typedef struct {
     SDL_Surface* surface;
     int type;
@@ -11,6 +13,7 @@ typedef struct {
 
 
 /* Permet de créer un bloc */
-Tile TileCreate( const SDL_Surface* surface, const int type );
+Tile TileCreate( SDL_Surface* surface, const int type );
+
 
 #endif // TILE_H_INCLUDED

@@ -1,16 +1,18 @@
 #ifndef CHARACTER_H_INCLUDED
 #define CHARACTER_H_INCLUDED
 
-
-#define UP 0
-#define DOWN 1
-#define LEFT 2
-#define RIGHT 3
-
-
 #include <SDL2/SDL.h>
 
 #include "engine.h"
+
+
+/* Enumération pour les directions */
+enum {
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT
+};
 
 
 /* Structure pour représenter un personnage */
