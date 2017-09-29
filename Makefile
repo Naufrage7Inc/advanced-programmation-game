@@ -25,9 +25,9 @@ RCFLAGS_RELEASE = $(RCFLAGS)
 LIBDIR_RELEASE = $(LIBDIR) -L/usr/lib/x86_64-linux-gnu/
 LIB_RELEASE = $(LIB)-lSDL2-2.0
 LDFLAGS_RELEASE = $(LDFLAGS) -s
-OBJDIR_RELEASE = obj/Release
+OBJDIR_RELEASE = obj
 DEP_RELEASE = 
-OUT_RELEASE = /game
+OUT_RELEASE = ./game
 
 OBJ_RELEASE = $(OBJDIR_RELEASE)/character.o $(OBJDIR_RELEASE)/engine.o $(OBJDIR_RELEASE)/main.o $(OBJDIR_RELEASE)/map.o $(OBJDIR_RELEASE)/tile.o
 
@@ -37,6 +37,7 @@ clean: clean_release
 
 before_release: 
 	cbp2make -in game.cbp -out Makefile
+	test -d . || mkdir -p .
 	test -d $(OBJDIR_RELEASE) || mkdir -p $(OBJDIR_RELEASE)
 
 after_release: 
@@ -63,6 +64,7 @@ $(OBJDIR_RELEASE)/tile.o: tile.c
 
 clean_release: 
 	rm -f $(OBJ_RELEASE) $(OUT_RELEASE)
+	rm -rf .
 	rm -rf $(OBJDIR_RELEASE)
 
 .PHONY: before_release after_release clean_release
