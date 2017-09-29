@@ -27,7 +27,7 @@ LIB_RELEASE = $(LIB)-lSDL2-2.0
 LDFLAGS_RELEASE = $(LDFLAGS) -s
 OBJDIR_RELEASE = obj/Release
 DEP_RELEASE = 
-OUT_RELEASE = bin/Release/game
+OUT_RELEASE = /game
 
 OBJ_RELEASE = $(OBJDIR_RELEASE)/character.o $(OBJDIR_RELEASE)/engine.o $(OBJDIR_RELEASE)/main.o $(OBJDIR_RELEASE)/map.o $(OBJDIR_RELEASE)/tile.o
 
@@ -37,7 +37,6 @@ clean: clean_release
 
 before_release: 
 	cbp2make -in game.cbp -out Makefile
-	test -d bin/Release || mkdir -p bin/Release
 	test -d $(OBJDIR_RELEASE) || mkdir -p $(OBJDIR_RELEASE)
 
 after_release: 
@@ -64,7 +63,6 @@ $(OBJDIR_RELEASE)/tile.o: tile.c
 
 clean_release: 
 	rm -f $(OBJ_RELEASE) $(OUT_RELEASE)
-	rm -rf bin/Release
 	rm -rf $(OBJDIR_RELEASE)
 
 .PHONY: before_release after_release clean_release
