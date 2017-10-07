@@ -13,7 +13,7 @@ typedef struct {
 
 
 /* Permet de créer un bloc */
-Tile TileCreate( SDL_Surface* surface, const int type );
+Tile* TileCreate( SDL_Surface* surface, const int type );
 
 
 #endif // TILE_H_INCLUDED
