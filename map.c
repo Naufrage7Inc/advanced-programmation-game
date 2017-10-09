@@ -47,5 +47,5 @@ void MapFree( Map* map ) {
     }
 
     SDL_FreeSurface( map->surfaceTileset );
-    free(map);
+    free( map );
 }

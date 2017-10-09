@@ -98,9 +98,9 @@ int main() {
 
 
     /* Nettoyage */
-    CharacterFree(sacha);
-    CharacterFree(pikachu);
-    MapFree(map);
+    CharacterFree( sacha );
+    CharacterFree( pikachu );
+    MapFree( map );
 
     MapFree( map );
     CleanupSDL( window );
