@@ -39,7 +39,7 @@ int main() {
 
     /* Création de la carte et du personnage */
     Map* map = MapCreate( "images/ground.bmp", "map.bin" );
-    Character* character = CharacterCreate( "images/sacha.bmp", CoordCreate( 1, 1 ) );
+    Character* sacha = CharacterCreate( "images/sacha.bmp", CoordCreate( 1, 1 ) );
     Character* pikachu = CharacterCreate( "images/pikachu.bmp", CoordCreate( 2, 2 ) );
 
 
@@ -66,17 +66,17 @@ int main() {
         if ( event.type == SDL_KEYDOWN ) {
             SDL_Keycode key = event.key.keysym.sym;
             if ( key == SDLK_LEFT ) {
-                CharacterMove( character, LEFT );
+                CharacterMove( sacha, LEFT );
                 mayUpdateScreen = true;
             }
             else if ( key == SDLK_RIGHT ) {
-                CharacterMove( character, RIGHT );
+                CharacterMove( sacha, RIGHT );
                 mayUpdateScreen = true;
             } else if ( key == SDLK_UP ) {
-                CharacterMove( character, UP );
+                CharacterMove( sacha, UP );
                 mayUpdateScreen = true;
             } else if ( key == SDLK_DOWN ) {
-                CharacterMove( character, DOWN );
+                CharacterMove( sacha, DOWN );
                 mayUpdateScreen = true;
             }
         }
@@ -87,8 +87,9 @@ int main() {
             if ( firstTime )
                 firstTime = false;
 
+
             MapDraw( map, surfaceWindow );
-            CharacterDraw( character, surfaceWindow );
+            CharacterDraw( sacha, surfaceWindow );
             CharacterDraw( pikachu, surfaceWindow );
 
             SDL_UpdateWindowSurface( window );
@@ -97,6 +98,10 @@ int main() {
 
 
     /* Nettoyage */
+    CharacterFree(sacha);
+    CharacterFree(pikachu);
+    MapFree(map);
+
     MapFree( map );
     CleanupSDL( window );
 

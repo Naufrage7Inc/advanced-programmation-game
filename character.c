@@ -59,3 +59,8 @@ void CharacterMove( Character* character, Direction direction ) {
         break;
     }
 }
+
+void CharacterFree( Character* character ) {
+    SDL_FreeSurface( character->surfaceTileset );
+    free( character );
+}

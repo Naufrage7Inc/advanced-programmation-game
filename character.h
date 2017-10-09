@@ -36,4 +36,8 @@ void CharacterDraw( const Character* character, SDL_Surface* surface );
 void CharacterMove( Character* character, Direction direction );
 
 
+/* Permet de libérer de la mémoire */
+void CharacterFree( Character* character );
+
+
 #endif // CHARACTER_H_INCLUDED
