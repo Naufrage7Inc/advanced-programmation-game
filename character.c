@@ -1,5 +1,3 @@
-#include <time.h>
-
 #include "constants.h"
 #include "character.h"
 
