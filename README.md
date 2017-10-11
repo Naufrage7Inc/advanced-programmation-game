@@ -35,18 +35,6 @@ Le module Engine apporte plusieurs fonctions facilitant la gestion d'erreurs, l'
     
   - *SDL_Surface** **LoadBMP**( const char* imagePath )  
     Retourne une image *imagePath* ( format .bmp ).
-    
-  - *Coord* **CoordCreate**( const int x, const int y )  
-    Retourne une coordonnée ( *x*, *y* ).
-    
-  - *Size* **SizeCreate**( const int w, const int h )  
-    Retourne une taille de longueur *w* et de hauteur *h*.
-    
-  - *SDL_Surface** **SurfaceGetResource**( SDL_Surface* surface, const int nTilesX, const int id )  
-    Retourne l'image de la ressource *id* depuis une surface *surface* ayant *nTilesX* tiles sur la longueur.
-    
-  - *SDL_Surface** **SurfaceCreate**( const int w, const int h )  
-    Retourne une surface vierge de longueur *w* et de hauteur *h*.
   
 ### Module Character
 Le module Character permet la manipulation directe d'un personnage : création, déplacement, ... 
@@ -55,23 +43,34 @@ Le module Character permet la manipulation directe d'un personnage : création, 
     Permet de définir un ensemble de direction: *Haut*, *Bas*, *Gauche* et *Droite*.
   
   - *struct* **Character** { SDL_Surface* , SDL_Rect , Coord , Direction }  
-    Permet de définir une structure *Character* qui contient une *surface* ( image du personnage ), un *Rect* ( rectangle qui découpe une partie de l'image du personnage ), une *Coord* ( coordonnée qui détermine la position du personnage sur la carte ) et une *Direction* ( direction du personnage ).
+    Permet de définir une structure *Character* qui contient une *surface* (image du personnage), un *Rect* (rectangle qui découpe une partie de l'image du personnage), une *Coord* (coordonnée qui détermine la position du personnage sur la carte) et une *Direction* (direction du personnage).
 
-  - *Character** **CharacterCreate**( const char* imagePath, const Coord position )  
+  - *Character** **CharacterCreate** ( const char* imagePath, const Coord position )  
     Retourne un personnage en utilisant l'image *imagePath* à la position *position*.
         
-  - *void* **CharacterDraw**( const Character* character, SDL_Surface* surface )  
-    Permet de dessiner le personnage *character* sur une surface *surface*.
+  - *void* **CharacterDraw** ( const Character* character, SDL_Surface* surface )  
+    Permet de déssiner le personnage *character* sur une surface *surface*.
         
-  - *void* **CharacterMove**( Character* character, Direction direction )  
+  - *void* **CharacterMove** ( Character* character, Direction direction )  
     Permet de déplacer un personnage *character* vers la direction *direction*.
     
-  - *void* **CharacterFree**( Character* character )  
+  - *void* **CharacterFree** ( Character* character )  
     Permet de libérer la mémoire utilisée par le personnage *character*.
   
 ### Module Map
 Le module Map permet la manipulation directe d'une carte : création, affichage, ...
-  
+
+  - *struct* **Map** { SDL_Surface* , Tile* }  
+    Permet de définir une structure *Map* qui contient une *surface* (image du terrain de la carte), et un *Tile** (tableau de blocs de la carte).
+    
+  - *Map** **MapCreate** ( const char* imagePath , const char* filePath )  
+    Retourne une carte en utilisant l'image *imagePath* dans la carte *filepath*.
+    
+  - *void* **MapDraw** ( const Map* map, SDL_Surface* surface )  
+    Permet de déssiner la carte *map* sur la surface *surface*.
+
+  - *void* **MapFree** ( Map* map )  
+    Permet de libérer la mémoire utilisée par la carte *map*.
   
 ### Module Tile
 Le module Tile permet la manipulation directe d'un bloc composant la carte : création et identification du bloc ( traversable ou non )
