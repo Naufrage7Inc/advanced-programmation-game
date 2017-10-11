@@ -91,4 +91,4 @@ Le module Tile permet la manipulation directe d'un bloc composant la carte : cr�
     Permet de définir une structure *Tile* qui contient une *surface* (
   
 ### Les petites structures
-Pour mener à bien ce projet, nous avons intégré quelques structures de base comme Coord et Size par exemple.
+Pour mener à bien ce projet, nous avons intégré quelques structures de base comme Coord ( structure définie par un couple (*x*, *y*) ) et Size ( structure définie par une *longueur* et une *hauteur* ) par exemple.
