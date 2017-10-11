@@ -61,13 +61,13 @@ Le module Character permet la manipulation directe d'un personnage : création, 
 Le module Map permet la manipulation directe d'une carte : création, affichage, ...
 
   - *struct* **Map** { SDL_Surface* , Tile* }  
-    Permet de définir une structure *Map* qui contient une *surface* (image du terrain de la carte), et un *Tile** (tableau de blocs de la carte).
+    Permet de définir une structure *Map* qui contient une *surface* ( image du terrain de la carte ), et plusieurs *Tile** ( tableau de blocs de la carte ).
     
   - *Map** **MapCreate** ( const char* imagePath , const char* filePath )  
-    Retourne une carte en utilisant l'image *imagePath* dans la carte *filepath*.
+    Retourne une carte en utilisant l'image *imagePath* dans la carte *filePath*.
     
   - *void* **MapDraw** ( const Map* map, SDL_Surface* surface )  
-    Permet de déssiner la carte *map* sur la surface *surface*.
+    Permet de dessiner la carte *map* sur la surface *surface*.
 
   - *void* **MapFree** ( Map* map )  
     Permet de libérer la mémoire utilisée par la carte *map*.
