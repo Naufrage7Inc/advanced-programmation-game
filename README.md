@@ -1,7 +1,7 @@
 # Projet programmation avancée
 
 ## Présentation du jeu
-Vous incarnez un personnage sombre et mystérieux. Grâce à de la magie rudimentaire car extrêmement ancienne, vous pouvez lancer des petites boules de feu. Vos ennemis sont les aliens, vous devez impérativement les neutraliser avant qu'ils ne s'approchent trop près de vous pour ... Vous dégommer !
+Vous incarnez un personnage célèbre personnage du nom de Sacha. Grâce à de la magie rudimentaire car extrêmement ancienne, vous pouvez capturer des petits Pokémons !
   
   
 ## Organisation du projet

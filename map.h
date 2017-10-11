@@ -8,15 +8,13 @@
 
 /* Structure pour représenter une carte */
 typedef struct {
-    Size size;
-    SDL_Surface* surface;
     SDL_Surface* surfaceTileset;
-    Tile tiles[N_BLOCKS_Y][N_BLOCKS_X];
+    Tile* tiles[N_BLOCKS_Y][N_BLOCKS_X];
 } Map;
 
 
 /* Permet de créer une carte */
-Map MapCreate( const char* imagePath );
+Map* MapCreate( const char* imagePath, const char* filePath );
 
 
 /* Dessine la carte sur la surface ( généralement l'écran ) */

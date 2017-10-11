@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <time.h>
 
 #include <SDL2/SDL.h>
 
@@ -11,6 +12,9 @@
 
 
 int main() {
+    srand( time( NULL ) );
+
+
     /* Initialisation de la SDL */
     if ( !InitSDL() ) {
         return EXIT_FAILURE;
@@ -28,16 +32,15 @@ int main() {
     /* Création de la surface de la fenêtre */
     SDL_Surface* surfaceWindow = NULL;
     if ( !CreateWindowSurface( &surfaceWindow, window ) ) {
-        SDL_Quit();
-        SDL_DestroyWindow( window );
+        CleanupSDL( window );
         return EXIT_FAILURE;
     }
 
 
-    Map map = MapCreate( "images/tileset.bmp" );
-
-    Coord coord = {1, 1};
-    Character character = CharacterCreate( "images/hero.bmp", coord );
+    /* Création de la carte et du personnage */
+    Map* map = MapCreate( "images/ground.bmp", "map.bin" );
+    Character* sacha = CharacterCreate( "images/sacha.bmp", CoordCreate( 1, 1 ) );
+    Character* pikachu = CharacterCreate( "images/pikachu.bmp", CoordCreate( 2, 2 ) );
 
 
     /* Boucle d'évènements */
@@ -49,6 +52,7 @@ int main() {
     while ( isOpen ) {
         mayUpdateScreen = false;
 
+
         /* SDL_WaitEvent est bloquant */
         SDL_WaitEvent( &event );
 
@@ -58,25 +62,22 @@ int main() {
             isOpen = false;
 
 
-        switch ( event.type ) {
-        case SDL_KEYDOWN:
-            switch ( event.key.keysym.sym ) {
-            case SDLK_LEFT:
-                CharacterMove( &character, LEFT );
+        /* Déplacement du personnage */
+        if ( event.type == SDL_KEYDOWN ) {
+            SDL_Keycode key = event.key.keysym.sym;
+            if ( key == SDLK_LEFT ) {
+                CharacterMove( sacha, LEFT );
                 mayUpdateScreen = true;
-                break;
-            case SDLK_RIGHT:
-                CharacterMove( &character, RIGHT );
+            }
+            else if ( key == SDLK_RIGHT ) {
+                CharacterMove( sacha, RIGHT );
                 mayUpdateScreen = true;
-                break;
-            case SDLK_UP:
-                CharacterMove( &character, UP );
+            } else if ( key == SDLK_UP ) {
+                CharacterMove( sacha, UP );
                 mayUpdateScreen = true;
-                break;
-            case SDLK_DOWN:
-                CharacterMove( &character, DOWN );
+            } else if ( key == SDLK_DOWN ) {
+                CharacterMove( sacha, DOWN );
                 mayUpdateScreen = true;
-                break;
             }
         }
 
@@ -86,8 +87,10 @@ int main() {
             if ( firstTime )
                 firstTime = false;
 
-            MapDraw( &map, surfaceWindow );
-            CharacterDraw( &character, surfaceWindow );
+
+            MapDraw( map, surfaceWindow );
+            CharacterDraw( sacha, surfaceWindow );
+            CharacterDraw( pikachu, surfaceWindow );
 
             SDL_UpdateWindowSurface( window );
         }
@@ -95,7 +98,11 @@ int main() {
 
 
     /* Nettoyage */
-    MapFree( &map );
+    CharacterFree( sacha );
+    CharacterFree( pikachu );
+    MapFree( map );
+
+    MapFree( map );
     CleanupSDL( window );
 
 

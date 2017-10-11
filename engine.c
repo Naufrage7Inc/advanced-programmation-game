@@ -69,8 +69,6 @@ SDL_Surface* SurfaceGetResource( SDL_Surface* surface, const int nTilesX, const 
     SDL_Rect src = { x, y, SIZE_BLOCK, SIZE_BLOCK };
     SDL_Rect dst = {0, 0, SIZE_BLOCK, SIZE_BLOCK};
 
-
-
     SDL_Surface* returnSurface = SurfaceCreate( SIZE_BLOCK, SIZE_BLOCK );
     SDL_BlitSurface( surface, &src, returnSurface, &dst );
 
