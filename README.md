@@ -60,7 +60,7 @@ Le module Character permet la manipulation directe d'un personnage : création, 
     Retourne un personnage en utilisant l'image *imagePath* à la position *position*.
         
   - *void* **CharacterDraw** ( const Character* character, SDL_Surface* surface )  
-    Permet de déssiner le personnage *character* sur une surface *surface*.
+    Permet de dessiner le personnage *character* sur une surface *surface*.
         
   - *void* **CharacterMove** ( Character* character, Direction direction )  
     Permet de déplacer un personnage *character* vers la direction *direction*.
