@@ -10,13 +10,12 @@ Vous incarnez un personnage sombre et mystérieux. Grâce à de la magie rudimen
 Ce qui est possible :
  - Création de la carte et affichage ( basique )
  - Création du personnage, affichage et déplacement ( basique )
+ - Création d'une map en fonction d'un fichier 
 
 Ce qui sera bientôt possible :
  - Gestion des animations du personnage ( effet de marche )
- - Gestion du tir des boules de feu
- - Création d'une map en fonction d'un fichier et gestion d'objets divers ( murs, ... )
- - Création, affichage et gestion des ennemis
- - Création du menu principal et de l'écran de mort
+ - Création, affichage et gestion des Pokémons
+ - Création du menu principal
   
   
 ### Module Engine

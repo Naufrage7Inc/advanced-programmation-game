@@ -6,10 +6,10 @@
 Character CharacterCreate( const char* imagePath, const Coord position ) {
     Character character;
 
-    SDL_Rect rect = {3 * 48, 0, SIZE_BLOCK, SIZE_BLOCK};
+    SDL_Rect rect = {3 * SIZE_BLOCK, 0, SIZE_BLOCK, SIZE_BLOCK};
     character.srcRect = rect;
 
-    character.surface = LoadBMP( imagePath );
+    character.surfaceTillset = LoadBMP( imagePath );
     character.position = position;
     character.direction = DOWN;
 
@@ -26,7 +26,7 @@ void CharacterDraw( const Character* character, SDL_Surface* surface ) {
 void CharacterMove( Character* character, int direction ) {
     character->direction = direction;
 
-    SDL_Rect rect = {3 * 48, 0, SIZE_BLOCK, SIZE_BLOCK};
+    SDL_Rect rect = {3 * SIZE_BLOCK, 0, SIZE_BLOCK, SIZE_BLOCK};
 
     switch ( direction ) {
     case LEFT:

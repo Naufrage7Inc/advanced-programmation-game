@@ -18,7 +18,7 @@ enum {
 /* Structure pour représenter un personnage */
 typedef struct {
     Coord position;
-    SDL_Surface* surface;
+    SDL_Surface* surfaceTileset;
     SDL_Rect srcRect;
     int direction;
 } Character;
