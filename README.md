@@ -17,10 +17,24 @@ Ce qui sera bientôt possible :
  - Création, affichage et gestion des Pokémons
  - Création du menu principal
   
-  
+
 ### Module Engine
 Le module Engine apporte plusieurs fonctions facilitant la gestion d'erreurs, l'utilisation de la SDL, ... Un ensemble de fonctions bien pratique !
   
+  - *bool* **InitSDL**( )  
+    Permet d'initialiser la SDL en mode vidéo. Retourne vrai en cas de réussite.
+    
+  - *bool* **CreateWindow**( SDL_Window** window, const int width, const int height, const char* title )  
+    Permet de créer une fenêtre *window* de largeur *width*, de hauteur *height* et de titre *title*. Retourne vrai en cas de réussite.
+        
+  - *bool* **CreateWindowSurface**( SDL_Surface** surface, SDL_Window* window )  
+    Permet de récupérer la *surface* surface d'une fenêtre *window* créée. Retourne vrai en cas de réussite.
+    
+  - *void* **CleanupSDL**( SDL_Window* window )  
+    Permet de détruire la fenêtre *window* et décharger la SDL.
+    
+  - *SDL_Surface** **LoadBMP**( const char* imagePath )  
+    Retourne une image *imagePath* ( format .bmp ).
   
 ### Module Character
 Le module Character permet la manipulation directe d'un personnage : création, déplacement, ... 
