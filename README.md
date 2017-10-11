@@ -87,8 +87,10 @@ Le module Map permet la manipulation directe d'une carte : création, affichage,
 ### Module Tile
 Le module Tile permet la manipulation directe d'un bloc composant la carte : création et identification du bloc ( traversable ou non )
 
-  - *struct* **Tile** { SDL_Surface* , Tile* }
-    Permet de définir une structure *Tile* qui contient une *surface* (
+  - *struct* **Tile** { SDL_Surface* , int }  
+    Permet de définir une structure *Tile* qui contient une *surface* ( image du bloc ), et un *entier* ( permet de définir si le bloc est franchissable )
+  
+  
   
 ### Les petites structures
 Pour mener à bien ce projet, nous avons intégré quelques structures de base comme Coord ( structure définie par un couple (*x*, *y*) ) et Size ( structure définie par une *longueur* et une *hauteur* ) par exemple.
