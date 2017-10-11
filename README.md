@@ -43,7 +43,7 @@ Le module Engine apporte plusieurs fonctions facilitant la gestion d'erreurs, l'
     Retourne une taille de longueur *w* et de hauteur *h*.
     
   - *SDL_Surface** **SurfaceGetResource**( SDL_Surface* surface, const int nTilesX, const int id )
-    Retourne une image depuis une surface *surface* ayant *nTilesX* tiles sur la longueur
+    Retourne l'image de la ressource *id* depuis une surface *surface* ayant *nTilesX* tiles sur la longueur.
   
 ### Module Character
 Le module Character permet la manipulation directe d'un personnage : création, déplacement, ... 
