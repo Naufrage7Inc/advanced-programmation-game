@@ -43,7 +43,7 @@ Le module Character permet la manipulation directe d'un personnage : création, 
     Permet de définir un ensemble de direction: *Haut*, *Bas*, *Gauche* et *Droite*.
   
   - *struct* **Character** { SDL_Surface* , SDL_Rect , Coord , Direction }  
-    Permet de définir une structure *Character* qui contient une *surface* (image du personnage), un *Rect* (rectangle qui découpe une partie de l'image du personnage), une *Coord* (coordonnée qui détermine la position du personnage sur la carte) et une *Direction* (direction du personnage).
+    Permet de définir une structure *Character* qui contient une *surface* ( image du personnage ), un *Rect* ( rectangle qui découpe une partie de l'image du personnage ), une *Coord* ( coordonnée qui détermine la position du personnage sur la carte ) et une *Direction* ( direction du personnage ).
 
   - *Character** **CharacterCreate** ( const char* imagePath, const Coord position )  
     Retourne un personnage en utilisant l'image *imagePath* à la position *position*.
