@@ -78,4 +78,4 @@ Le module Tile permet la manipulation directe d'un bloc composant la carte : cr�
   
   
 ### Les petites structures
-Pour mener à bien ce projet, nous avons intégré quelques structures de base comme Coord et Size par exemple.
+Pour mener à bien ce projet, nous avons intégré quelques structures de base comme Coord ( permet de gérer les coordonnées définies par un couple (*x*, *y*) ) et Size ( permet de gérer des tailles définies par une *longueur* et une *hauteur* ) par exemple.
