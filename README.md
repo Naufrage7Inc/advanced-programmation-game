@@ -34,7 +34,7 @@ Le module Engine apporte plusieurs fonctions facilitant la gestion d'erreurs, l'
     Permet de détruire la fenêtre *window* et décharger la SDL.
     
   - *SDL_Surface** **LoadBMP**( const char* imagePath )  
-    Permet de chager une image *imagePath* ( format .bmp ). Retourne l'image en cas de réussite.
+    Retourne une image *imagePath* ( format .bmp ).
   
 ### Module Character
 Le module Character permet la manipulation directe d'un personnage : création, déplacement, ... 
