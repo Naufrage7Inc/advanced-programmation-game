@@ -20,31 +20,31 @@ Ce qui sera bientôt possible :
 ### Module Engine
 Le module Engine apporte plusieurs fonctions facilitant la gestion d'erreurs, l'utilisation de la SDL, ... Un ensemble de fonctions bien pratique !
   
-  - *bool* **InitSDL**( )  
+  - *bool* **InitSDL** ( )  
     Permet d'initialiser la SDL en mode vidéo. Retourne vrai en cas de réussite.
     
-  - *bool* **CreateWindow**( SDL_Window** window, const int width, const int height, const char* title )  
+  - *bool* **CreateWindow** ( SDL_Window** window, const int width, const int height, const char* title )  
     Permet de créer une fenêtre *window* de largeur *width*, de hauteur *height* et de titre *title*. Retourne vrai en cas de réussite.
         
-  - *bool* **CreateWindowSurface**( SDL_Surface** surface, SDL_Window* window )  
+  - *bool* **CreateWindowSurface** ( SDL_Surface** surface, SDL_Window* window )  
     Permet de récupérer la *surface* surface d'une fenêtre *window* créée. Retourne vrai en cas de réussite.
     
-  - *void* **CleanupSDL**( SDL_Window* window )  
+  - *void* **CleanupSDL** ( SDL_Window* window )  
     Permet de détruire la fenêtre *window* et décharger la SDL.
     
-  - *SDL_Surface** **LoadBMP**( const char* imagePath )  
+  - *SDL_Surface** **LoadBMP** ( const char* imagePath )  
     Retourne une image *imagePath* ( format .bmp ).
     
-  - *Coord* **CoordCreate**( const int x, const int y )  
+  - *Coord* **CoordCreate** ( const int x, const int y )  
     Retourne une coordonnée ( *x*, *y* ).
     
-  - *Size* **SizeCreate**( const int w, const int h )  
+  - *Size* **SizeCreate** ( const int w, const int h )  
     Retourne une taille de longueur *w* et de hauteur *h*.
     
-  - *SDL_Surface** **SurfaceGetResource**( SDL_Surface* surface, const int nTilesX, const int id )  
+  - *SDL_Surface** **SurfaceGetResource** ( SDL_Surface* surface, const int nTilesX, const int id )  
     Retourne l'image de la ressource *id* depuis une surface *surface* ayant *nTilesX* tiles sur la longueur.
     
-  - *SDL_Surface** **SurfaceCreate**( const int w, const int h )  
+  - *SDL_Surface** **SurfaceCreate** ( const int w, const int h )  
     Retourne une surface vierge de longueur *w* et de hauteur *h*.
   
 ### Module Character
