@@ -21,7 +21,7 @@ Map* MapCreate( const char* imagePath, const char* filePath ) {
         for ( int x = 0; x < N_BLOCKS_X; x++ ) {
             int id = 0;
             fread( &id, sizeof( int ), 1, fdHandle );
-            map->tiles[y][x] = TileCreate( SurfaceGetResource( map->surfaceTileset, 12, id ), 0 );
+            map->tiles[y][x] = TileCreate( SurfaceGetResource( map->surfaceTileset, 12, id ), PASSABLE );
         }
     }
 

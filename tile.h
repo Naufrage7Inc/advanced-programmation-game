@@ -5,15 +5,22 @@
 #include <SDL2/SDL.h>
 
 
+/* Enumération pour définir la franchissabilité du bloc */
+typedef enum {
+    NO_PASSABLE,
+    PASSABLE
+} Passability;
+
+
 /* Structure pour contenir un bloc de terrain */
 typedef struct {
     SDL_Surface* surface;
-    int type;
+    Passability passability;
 } Tile;
 
 
 /* Permet de créer un bloc */
-Tile* TileCreate( SDL_Surface* surface, const int type );
+Tile* TileCreate( SDL_Surface* surface, const Passability passability );
 
 
 #endif // TILE_H_INCLUDED

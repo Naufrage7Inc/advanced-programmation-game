@@ -1,11 +1,11 @@
 #include "tile.h"
 
 
-Tile* TileCreate( SDL_Surface* surface, const int type )  {
+Tile* TileCreate( SDL_Surface* surface, const Passability passability )  {
     /* TODO */
     Tile* tile = malloc( sizeof( Tile ) );
     tile->surface = surface;
-    tile->type = type;
+    tile->passability = passability;
 
     return tile;
 }

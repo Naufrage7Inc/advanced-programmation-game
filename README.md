@@ -53,7 +53,7 @@ Le module Character permet la manipulation directe d'un personnage : création, 
   - *enum* **Direction** { UP , DOWN , LEFT , RIGHT }  
     Permet de définir un ensemble de direction: *Haut*, *Bas*, *Gauche* et *Droite*.
   
-  - *struct* **Character** { SDL_Surface* , SDL_Rect , Coord , Direction }  
+  - *struct* **Character** { SDL_Surface*, SDL_Rect, Coord, Direction }  
     Permet de définir une structure *Character* qui contient une *surface* ( image du personnage ), un *Rect* ( rectangle qui découpe une partie de l'image du personnage ), une *Coord* ( coordonnée qui détermine la position du personnage sur la carte ) et une *Direction* ( direction du personnage ).
 
   - *Character** **CharacterCreate** ( const char* imagePath, const Coord position )  
@@ -71,10 +71,10 @@ Le module Character permet la manipulation directe d'un personnage : création, 
 ### Module Map
 Le module Map permet la manipulation directe d'une carte : création, affichage, ...
 
-  - *struct* **Map** { SDL_Surface* , Tile* }  
+  - *struct* **Map** { SDL_Surface*, Tile* }  
     Permet de définir une structure *Map* qui contient une *surface* ( image du terrain de la carte ), et plusieurs *Tile** ( tableau de blocs de la carte ).
     
-  - *Map** **MapCreate** ( const char* imagePath , const char* filePath )  
+  - *Map** **MapCreate** ( const char* imagePath, const char* filePath )  
     Retourne une carte en utilisant l'image *imagePath* dans la carte *filePath*.
     
   - *void* **MapDraw** ( const Map* map, SDL_Surface* surface )  
@@ -86,11 +86,14 @@ Le module Map permet la manipulation directe d'une carte : création, affichage,
 ### Module Tile
 Le module Tile permet la manipulation directe d'un bloc composant la carte : création et identification du bloc ( traversable ou non )
 
-  - *struct* **Tile** { SDL_Surface* , int }  
+  - *enum* **Passability** { NO_PASSABLE , PASSABLE }  
+    Permet de définir une structure *Tile* qui contient une *surface* ( image du bloc ), et un *entier* ( permet de définir si le bloc est franchissable ).
+
+  - *struct* **Tile** { SDL_Surface*, int }  
     Permet de définir une structure *Tile* qui contient une *surface* ( image du bloc ), et un *entier* ( permet de définir si le bloc est franchissable ).
   
-  - *Tile** **TileCreate** ( SDL_Surface* surface , const int type )  
-    Retourne un bloc ayant pour surface *surface* où *type* représente sa franchissabilité sur la carte.
+  - *Tile** **TileCreate** ( SDL_Surface* surface, const Passability passability )  
+    Retourne un bloc ayant pour surface *surface* où *passability* représente sa franchissabilité sur la carte.
   
 ### Les petites structures
 Pour mener à bien ce projet, nous avons intégré quelques structures de base comme Coord ( structure définie par un couple (*x*, *y*) ) et Size ( structure définie par une *longueur* et une *hauteur* ) par exemple.
