@@ -37,7 +37,7 @@ Le module Engine apporte plusieurs fonctions facilitant la gestion d'erreurs, l'
     Retourne une image *imagePath* ( format .bmp ).
     
   - *Coord* **CoordCreate**( const int x, const int y )  
-     Retourne une coordonnée ( *x*, *y* ).
+    Retourne une coordonnée ( *x*, *y* ).
     
   - *Size* **SizeCreate**( const int w, const int h )  
     Retourne une taille de longueur *w* et de hauteur *h*.
@@ -88,9 +88,10 @@ Le module Map permet la manipulation directe d'une carte : création, affichage,
 Le module Tile permet la manipulation directe d'un bloc composant la carte : création et identification du bloc ( traversable ou non )
 
   - *struct* **Tile** { SDL_Surface* , int }  
-    Permet de définir une structure *Tile* qui contient une *surface* ( image du bloc ), et un *entier* ( permet de définir si le bloc est franchissable )
+    Permet de définir une structure *Tile* qui contient une *surface* ( image du bloc ), et un *entier* ( permet de définir si le bloc est franchissable ).
   
-  
+  - *Tile** **TileCreate** ( SDL_Surface* surface , const int type )  
+    Retourne un bloc ayant pour surface *surface* où *type* représente sa franchissabilité sur la carte.
   
 ### Les petites structures
 Pour mener à bien ce projet, nous avons intégré quelques structures de base comme Coord ( structure définie par un couple (*x*, *y*) ) et Size ( structure définie par une *longueur* et une *hauteur* ) par exemple.
