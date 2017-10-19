@@ -21,6 +21,7 @@ typedef struct {
 
 /* Permet de créer un bloc */
 Tile* TileCreate( SDL_Surface* surface, const Passability passability );
+void TileFree( Tile* tile );
 
 
 #endif // TILE_H_INCLUDED

@@ -9,3 +9,8 @@ Tile* TileCreate( SDL_Surface* surface, const Passability passability )  {
 
     return tile;
 }
+
+void TileFree( Tile* tile ) {
+    SDL_FreeSurface( tile->surface );
+    free( tile );
+}

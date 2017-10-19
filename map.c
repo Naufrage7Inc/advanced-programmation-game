@@ -6,6 +6,10 @@
 Map* MapCreate( const char* imagePath, const char* filePath ) {
     Map* map = malloc( sizeof( Map ) );
 
+    map->tiles = ( Tile*** )malloc( N_BLOCKS_Y * sizeof( Tile** ) );
+    for ( int y = 0; y < N_BLOCKS_Y; y++ )
+        map->tiles[y] = ( Tile** )malloc( N_BLOCKS_X * sizeof( Tile* ) );
+
     map->surfaceTileset = LoadBMP( imagePath );
 
     FILE* fdHandle = fopen( filePath, "rb" );
@@ -42,9 +46,13 @@ void MapDraw( const Map* map, SDL_Surface* surface ) {
 void MapFree( Map* map ) {
     for ( int y = 0; y < N_BLOCKS_Y; y++ ) {
         for ( int x = 0; x < N_BLOCKS_X; x++ ) {
-            SDL_FreeSurface( map->tiles[y][x]->surface );
+            TileFree( map->tiles[y][x] );
         }
+
+        free( map->tiles[y] );
     }
+
+    free( map->tiles );
 
     SDL_FreeSurface( map->surfaceTileset );
     free( map );

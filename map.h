@@ -9,7 +9,7 @@
 /* Structure pour représenter une carte */
 typedef struct {
     SDL_Surface* surfaceTileset;
-    Tile* tiles[N_BLOCKS_Y][N_BLOCKS_X];
+    Tile*** tiles;
 } Map;
 
 
