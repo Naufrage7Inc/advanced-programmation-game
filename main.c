@@ -12,12 +12,13 @@
 
 
 int main() {
+    /* Initialisation du temps */
     srand( time( NULL ) );
 
 
     /* Initialisation de la SDL */
     if ( !InitSDL() ) {
-        return EXIT_FAILURE;
+        exit( EXIT_FAILURE );
     }
 
 
@@ -25,7 +26,7 @@ int main() {
     SDL_Window* window = NULL;
     if ( !CreateWindow( &window, WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE ) ) {
         SDL_Quit();
-        return EXIT_FAILURE;
+        exit( EXIT_FAILURE );
     }
 
 
@@ -33,7 +34,7 @@ int main() {
     SDL_Surface* surfaceWindow = NULL;
     if ( !CreateWindowSurface( &surfaceWindow, window ) ) {
         CleanupSDL( window );
-        return EXIT_FAILURE;
+        exit( EXIT_FAILURE );
     }
 
 
@@ -45,12 +46,27 @@ int main() {
 
     /* Boucle d'évènements */
     bool isOpen = true;
-    bool mayUpdateScreen = false;
     bool firstTime = true;
+    bool teleported = false;
+    bool mayUpdateScreen = true;
     SDL_Event event;
 
     while ( isOpen ) {
         mayUpdateScreen = false;
+
+
+        /* On téléporte le joueur s'il est sur un téléporteur */
+        if ( map->tiles[sacha->position.y][sacha->position.x]->passability == NO_PASSABLE && !teleported ) {
+            teleported = true;
+
+            CharacterTeleport( sacha );
+
+            MapDraw( map, surfaceWindow );
+            CharacterDraw( sacha, surfaceWindow );
+            CharacterDraw( pikachu, surfaceWindow );
+
+            SDL_UpdateWindowSurface( window );
+        }
 
 
         /* SDL_WaitEvent est bloquant */
@@ -66,18 +82,22 @@ int main() {
         if ( event.type == SDL_KEYDOWN ) {
             SDL_Keycode key = event.key.keysym.sym;
             if ( key == SDLK_LEFT ) {
-                CharacterMove( sacha, LEFT );
+                CharacterMove( sacha, LEFT, map );
                 mayUpdateScreen = true;
+                teleported = false;
             }
             else if ( key == SDLK_RIGHT ) {
-                CharacterMove( sacha, RIGHT );
+                CharacterMove( sacha, RIGHT, map );
                 mayUpdateScreen = true;
+                teleported = false;
             } else if ( key == SDLK_UP ) {
-                CharacterMove( sacha, UP );
+                CharacterMove( sacha, UP, map );
                 mayUpdateScreen = true;
+                teleported = false;
             } else if ( key == SDLK_DOWN ) {
-                CharacterMove( sacha, DOWN );
+                CharacterMove( sacha, DOWN, map );
                 mayUpdateScreen = true;
+                teleported = false;
             }
         }
 
@@ -87,11 +107,21 @@ int main() {
             if ( firstTime )
                 firstTime = false;
 
+            int random = rand() % 4;
+            if ( random == 0 && pikachu->position.x + 1 != sacha->position.x && pikachu->position.y != sacha->position.y ) {
+                CharacterMove( pikachu, RIGHT, map );
+            } else if ( random == 1 && pikachu->position.x - 1 != sacha->position.x && pikachu->position.y != sacha->position.y ) {
+                CharacterMove( pikachu, LEFT, map );
+            } else if ( random == 2 && pikachu->position.x != sacha->position.x && pikachu->position.y - 1 != sacha->position.y ) {
+                CharacterMove( pikachu, UP, map );
+            } else if ( random == 3 && pikachu->position.x != sacha->position.x && pikachu->position.y + 1 != sacha->position.y ) {
+                CharacterMove( pikachu, DOWN, map );
+            }
+
 
             MapDraw( map, surfaceWindow );
             CharacterDraw( sacha, surfaceWindow );
             CharacterDraw( pikachu, surfaceWindow );
-
             SDL_UpdateWindowSurface( window );
         }
     }
@@ -102,7 +132,6 @@ int main() {
     CharacterFree( pikachu );
     MapFree( map );
 
-    MapFree( map );
     CleanupSDL( window );
 
 

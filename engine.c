@@ -62,7 +62,7 @@ Size SizeCreate( const int w, const int h ) {
 }
 
 
-SDL_Surface* SurfaceGetResource( SDL_Surface* surface, const int nTilesX, const int id ) {
+SDL_Surface* SurfaceGetResource( const SDL_Surface* surface, const int nTilesX, const int id ) {
     int x = id % nTilesX * SIZE_BLOCK;
     int y = id / nTilesX * SIZE_BLOCK;
 

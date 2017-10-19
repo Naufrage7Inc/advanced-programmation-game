@@ -50,7 +50,7 @@ Size SizeCreate( const int w, const int h );
 
 
 /* Permet de créer la surface d'un bloc */
-SDL_Surface* SurfaceGetResource( SDL_Surface* surface, const int nTilesX, const int id );
+SDL_Surface* SurfaceGetResource( const SDL_Surface* surface, const int nTilesX, const int id );
 
 
 /* Permet de créer une surface vide */

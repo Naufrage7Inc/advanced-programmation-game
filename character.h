@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 
 #include "engine.h"
+#include "map.h"
 
 
 /* Enumération pour les directions */
@@ -33,7 +34,11 @@ void CharacterDraw( const Character* character, SDL_Surface* surface );
 
 
 /* Permet de déplacer un personnage sur la carte */
-void CharacterMove( Character* character, Direction direction );
+void CharacterMove( Character* character, const Direction direction, const Map* map );
+
+
+/* Permet de téléporter un personnage sur la carte */
+void CharacterTeleport( Character* character );
 
 
 /* Permet de libérer de la mémoire */

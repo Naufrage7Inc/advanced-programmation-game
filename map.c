@@ -12,20 +12,13 @@ Map* MapCreate( const char* imagePath, const char* filePath ) {
 
     map->surfaceTileset = LoadBMP( imagePath );
 
-    FILE* fdHandle = fopen( filePath, "rb" );
-
-    if ( fdHandle == NULL ) {
-        fprintf( stderr, "Unable to open %s\n", filePath );
-        SDL_FreeSurface( map->surfaceTileset );
-        free( map );
-        return NULL;
-    }
-
     for ( int y = 0; y < N_BLOCKS_Y; y++ ) {
         for ( int x = 0; x < N_BLOCKS_X; x++ ) {
-            int id = 0;
-            fread( &id, sizeof( int ), 1, fdHandle );
-            map->tiles[y][x] = TileCreate( SurfaceGetResource( map->surfaceTileset, 12, id ), PASSABLE );
+            if ( y == 0 && ( x == 0 || x == N_BLOCKS_X - 1 ) || y == N_BLOCKS_Y - 1 && ( x == 0 || x == N_BLOCKS_X - 1 ) ) {
+                map->tiles[y][x] = TileCreate( SurfaceGetResource( map->surfaceTileset, 1, 3 ), NO_PASSABLE );
+            } else {
+                map->tiles[y][x] = TileCreate( SurfaceGetResource( map->surfaceTileset, 1, 0 ), PASSABLE );
+            }
         }
     }
 
