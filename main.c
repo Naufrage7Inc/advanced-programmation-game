@@ -10,14 +10,17 @@
 #include "character.h"
 #include "map.h"
 #include "liste.h"
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 int n_malloc;
 int n_free;
 
 int main() {
-    n_malloc = 0;
-    n_free   = 0;
+        n_malloc = 0;
+        n_free = 0;
 
 
     /* Initialisation du temps */
