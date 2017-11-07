@@ -1,8 +1,8 @@
 #include "liste.h"
 
-bool IsEmpty(TList list)
+bool IsEmpty( TList list )
 {
-    if (list==CreateEmpty())
+    if ( list == CreateEmpty ( ) )
     {
         return true;
     }
@@ -12,47 +12,47 @@ bool IsEmpty(TList list)
     }
 }
 
-void* Head(TList list)
+void* Head( TList list )
 {
     return list->ptr;
 }
 
-TList Rest(TList list)
+TList Rest( TList list )
 {
     return list->next;
 }
 
-TList CreateEmpty()
+TList CreateEmpty( )
 {
     return NULL;
 }
 
-TList Create(void *ptr,TList list)
+TList Create( void *ptr, TList list )
 {
-    TListElem* temp = (TListElem*)malloc(sizeof(TListElem));
-    temp->ptr = ptr;
+    TListElem *temp = (TListElem *)malloc ( sizeof( TListElem ) );
+
+    temp->ptr  = ptr;
     temp->next = list;
     return temp;
 }
 
-void ModifyHead(void *ptr, TList list)
+void ModifyHead( void *ptr, TList list )
 {
-    list->ptr=ptr;
+    list->ptr = ptr;
 }
 
-void ModifyRest(TList a, TList b)
+void ModifyRest( TList a, TList b )
 {
-    a->next=b;
-
+    a->next = b;
 }
 
-void FreeList(TList list)
+void FreeList( TList list )
 {
-    if (Rest(list)!= CreateEmpty())
+    if ( Rest ( list ) != CreateEmpty ( ) )
     {
-        FreeList(Rest(list));
-        free(list);
-    } else if (!IsEmpty(list)) {
-        free(list);
+        FreeList ( Rest ( list ) );
+        free ( list );
+    } else if ( !IsEmpty ( list ) ) {
+        free ( list );
     }
 }

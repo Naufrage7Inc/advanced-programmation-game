@@ -24,61 +24,51 @@ typedef struct {
 
 
 /* Permet de tracer les appels à malloc */
-void* malloc_trace(size_t __size);
+void* malloc_trace ( size_t __size );
 
 
 /* Permet de tracer les appels à free */
-void free_trace(void *__ptr);
+void free_trace ( void *__ptr );
 
 
 /* Permet d'initialiser la SDL */
-bool InitSDL();
+bool InitSDL ( );
 
 
 /* Permet de créer une fenêtre graphique */
-bool CreateWindow(SDL_Window **window,
-                  const int    width,
-                  const int    height,
-                  const char  *title);
+bool CreateWindow ( SDL_Window **window, const int width, const int height, const char *title );
 
 
 /* Permet de créer la surface de la fenêtre */
-bool CreateWindowSurface(SDL_Surface **surface,
-                         SDL_Window   *window);
+bool CreateWindowSurface ( SDL_Surface **surface, SDL_Window *window );
 
 
 /* Permet de nettoyer la fenêtre et de décharger la SDL */
-void CleanupSDL(SDL_Window *window);
+void CleanupSDL ( SDL_Window *window );
 
 
 /* Permet de charger une image en mémoire */
-SDL_Surface* LoadBMP(const char *imagePath);
+SDL_Surface* LoadBMP ( const char *imagePath );
 
 
 /* Permet de créer une coordonnée */
-Coord CoordCreate(const int x,
-                  const int y);
+Coord CoordCreate ( const int x, const int y );
 
 
 /* Permet de créer une coordonnée */
-Size SizeCreate(const int w,
-                const int h);
+Size SizeCreate ( const int w, const int h );
 
 
 /* Permet de créer la surface d'un bloc */
-SDL_Surface* SurfaceGetResource(SDL_Surface *surface,
-                                const int    nTilesX,
-                                const int    id);
+SDL_Surface* SurfaceGetResource ( SDL_Surface *surface, const int nTilesX, const int id );
 
 
 /* Permet de créer une surface vide */
-SDL_Surface* SurfaceCreate(const int w,
-                           const int h);
+SDL_Surface* SurfaceCreate ( const int w, const int h );
 
 
 /* */
-int GetDistance(const Coord a,
-                const Coord b);
+int GetDistance ( const Coord a, const Coord b );
 
 
 #endif // ENGINE_H_INCLUDED

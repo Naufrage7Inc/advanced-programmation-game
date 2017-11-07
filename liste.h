@@ -6,20 +6,20 @@
 
 struct TListElem
 {
-    void *ptr;
+    void             *ptr;
     struct TListElem *next;
 };
 
 typedef struct TListElem TListElem;
-typedef TListElem* TList;
+typedef TListElem       *TList;
 
-bool IsEmpty(TList list);
-void* Head(TList list);
-TList Rest(TList list);
-TList CreateEmpty();
-TList Create(void *ptr,TList list);
-void ModifyHead(void *ptr, TList list);
-void ModifyRest(TList a, TList b);
-void FreeList(TList list);
+bool  IsEmpty ( TList list );
+void* Head ( TList list );
+TList Rest ( TList list );
+TList CreateEmpty ( );
+TList Create ( void *ptr, TList list );
+void  ModifyHead ( void *ptr, TList list );
+void  ModifyRest ( TList a, TList b );
+void  FreeList ( TList list );
 
-#endif
+#endif // ifndef LISTE_H_INCLUDED
