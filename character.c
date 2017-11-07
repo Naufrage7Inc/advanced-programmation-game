@@ -70,23 +70,6 @@ void CharacterMove(Character *character, const Direction direction) {
     }
 }
 
-void CharacterTeleport(Character *character) {
-    int x = rand() % 2 * (N_BLOCKS_X - 1);
-    int y = rand() % 2 * (N_BLOCKS_Y - 1);
-
-    if ((x == character->position.x) && (y == character->position.y)) {
-        if (rand() % 2) {
-            if (x == N_BLOCKS_X - 1) x = 0;
-            else x = N_BLOCKS_X - 1;
-        } else {
-            if (y == N_BLOCKS_Y - 1) y = 0;
-            else y = N_BLOCKS_Y - 1;
-        }
-    }
-    character->position.x = x;
-    character->position.y = y;
-}
-
 void CharacterFree(Character *character) {
     SDL_FreeSurface(character->surfaceTileset);
     free_trace(character);

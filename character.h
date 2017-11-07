@@ -41,10 +41,6 @@ void CharacterMove(Character      *character,
                    const Direction direction);
 
 
-/* Permet de téléporter un personnage sur la carte */
-void CharacterTeleport(Character *character);
-
-
 /* Permet de libérer de la mémoire */
 void CharacterFree(Character *character);
 
