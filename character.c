@@ -3,7 +3,7 @@
 
 
 Character* CharacterCreate( const char* imagePath, const Coord position ) {
-    Character* character = malloc( sizeof( Character ) );
+    Character* character = malloc_trace( sizeof( Character ) );
 
     SDL_Rect rect = { 0, 0, SIZE_BLOCK, SIZE_BLOCK };
     character->rectSrc = rect;
@@ -22,7 +22,7 @@ void CharacterDraw( const Character* character, SDL_Surface* surface ) {
 }
 
 
-void CharacterMove( Character* character, const Direction direction, const Map* map ) {
+void CharacterMove( Character* character, const Direction direction ) {
     character->direction = direction;
 
     SDL_Rect rect = { 0, 0, SIZE_BLOCK, SIZE_BLOCK};
@@ -83,5 +83,5 @@ void CharacterTeleport( Character* character ) {
 
 void CharacterFree( Character* character ) {
     SDL_FreeSurface( character->surfaceTileset );
-    free( character );
+    free_trace( character );
 }

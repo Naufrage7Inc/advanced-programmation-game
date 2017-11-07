@@ -18,31 +18,34 @@ typedef enum {
 
 /* Structure pour représenter un personnage */
 typedef struct {
-    SDL_Surface* surfaceTileset;
-    SDL_Rect rectSrc;
-    Coord position;
-    Direction direction;
+    SDL_Surface *surfaceTileset;
+    SDL_Rect     rectSrc;
+    Coord        position;
+    Direction    direction;
 } Character;
 
 
 /* Permet de créer un personnage */
-Character* CharacterCreate( const char* imagePath, const Coord position );
+Character* CharacterCreate(const char *imagePath,
+                           const Coord position);
 
 
 /* Permet de dessiner le personnage sur une surface ( généralement l'écran ) */
-void CharacterDraw( const Character* character, SDL_Surface* surface );
+void CharacterDraw(const Character *character,
+                   SDL_Surface     *surface);
 
 
 /* Permet de déplacer un personnage sur la carte */
-void CharacterMove( Character* character, const Direction direction, const Map* map );
+void CharacterMove(Character      *character,
+                   const Direction direction);
 
 
 /* Permet de téléporter un personnage sur la carte */
-void CharacterTeleport( Character* character );
+void CharacterTeleport(Character *character);
 
 
 /* Permet de libérer de la mémoire */
-void CharacterFree( Character* character );
+void CharacterFree(Character *character);
 
 
 #endif // CHARACTER_H_INCLUDED

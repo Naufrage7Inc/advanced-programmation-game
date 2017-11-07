@@ -2,6 +2,18 @@
 #include "engine.h"
 
 
+void* malloc_trace(size_t __size) {
+    n_malloc++;
+    return malloc(__size);
+}
+
+
+void free_trace(void* __ptr) {
+    n_free++;
+    free(__ptr);
+}
+
+
 bool InitSDL() {
     if ( SDL_Init( SDL_INIT_VIDEO ) < 0 ) {
         fprintf( stderr, "Impossible d'initialiser la SDL : %s\n", SDL_GetError() );
@@ -62,7 +74,7 @@ Size SizeCreate( const int w, const int h ) {
 }
 
 
-SDL_Surface* SurfaceGetResource( const SDL_Surface* surface, const int nTilesX, const int id ) {
+SDL_Surface* SurfaceGetResource( SDL_Surface* surface, const int nTilesX, const int id ) {
     int x = id % nTilesX * SIZE_BLOCK;
     int y = id / nTilesX * SIZE_BLOCK;
 

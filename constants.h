@@ -12,5 +12,7 @@
 
 #define WINDOW_TITLE "Projet programmation avancée"
 
+extern int n_free;
+extern int n_malloc;
 
 #endif // CONSTANTS_H_INCLUDED

@@ -1,9 +1,9 @@
 #include "tile.h"
+#include "engine.h"
 
 
 Tile* TileCreate( SDL_Surface* surface, const Passability passability )  {
-    /* TODO */
-    Tile* tile = malloc( sizeof( Tile ) );
+    Tile* tile = (Tile*) malloc_trace( sizeof( Tile ) );
     tile->surface = surface;
     tile->passability = passability;
 
@@ -12,5 +12,5 @@ Tile* TileCreate( SDL_Surface* surface, const Passability passability )  {
 
 void TileFree( Tile* tile ) {
     SDL_FreeSurface( tile->surface );
-    free( tile );
+    free_trace( tile );
 }

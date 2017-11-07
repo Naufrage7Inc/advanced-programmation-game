@@ -3,12 +3,12 @@
 #include "map.h"
 
 
-Map* MapCreate( const char* imagePath, const char* filePath ) {
-    Map* map = malloc( sizeof( Map ) );
+Map* MapCreate( const char* imagePath ) {
+    Map* map = malloc_trace( sizeof( Map ) );
 
-    map->tiles = ( Tile*** )malloc( N_BLOCKS_Y * sizeof( Tile** ) );
+    map->tiles = ( Tile*** )malloc_trace( N_BLOCKS_Y * sizeof( Tile** ) );
     for ( int y = 0; y < N_BLOCKS_Y; y++ )
-        map->tiles[y] = ( Tile** )malloc( N_BLOCKS_X * sizeof( Tile* ) );
+        map->tiles[y] = ( Tile** )malloc_trace( N_BLOCKS_X * sizeof( Tile* ) );
 
     map->surfaceTileset = LoadBMP( imagePath );
 
@@ -42,11 +42,11 @@ void MapFree( Map* map ) {
             TileFree( map->tiles[y][x] );
         }
 
-        free( map->tiles[y] );
+        free_trace( map->tiles[y] );
     }
 
-    free( map->tiles );
+    free_trace( map->tiles );
 
     SDL_FreeSurface( map->surfaceTileset );
-    free( map );
+    free_trace( map );
 }
