@@ -5,6 +5,7 @@
 
 #include "engine.h"
 #include "map.h"
+#include "liste.h"
 
 
 /* Enumération pour les directions */
@@ -53,9 +54,13 @@ Coord CharacterGetCoord(Character *character);
 
 
 /* */
-bool isThereCharacterAtPosition(const Coord position,
+void CharacterSetCoord(Character* character, Coord position);
+
+
+/* */
+bool IsThereCharacterAtPosition(const Coord position,
                                 Character  *character,
-                                Character **characters,
+                                TList characters,
                                 int         n);
 
 

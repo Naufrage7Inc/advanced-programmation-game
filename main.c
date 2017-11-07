@@ -53,14 +53,17 @@ int main() {
     Character *sacha = CharacterCreate("images/sacha.bmp",
                                        CoordCreate(rand() % N_BLOCKS_X,
                                                    rand() % N_BLOCKS_Y));
-    Character **pikachu = (Character **)malloc(sizeof(Character *) * 3);
+    TList pikachu = CreateEmpty();
+
 
     for (int i = 0; i < N_PIKACHU; i++) {
+        pikachu = Create(CharacterCreate("images/pikachu.bmp",CoordCreate(0,0)),pikachu);
+        Character* character = Head (pikachu);
+
         do {
-            pikachu[i] = CharacterCreate("images/pikachu.bmp",
-                                         CoordCreate(rand() % N_BLOCKS_X,
-                                                     rand() % N_BLOCKS_Y));
-        } while (isThereCharacterAtPosition(CharacterGetCoord(pikachu[i]), sacha,
+           CharacterSetCoord(character,CoordCreate(rand() % N_BLOCKS_X,rand() % N_BLOCKS_Y));
+        }
+         while (IsThereCharacterAtPosition(CharacterGetCoord(character), sacha,
                                             pikachu, i - 1));
     }
 
@@ -119,8 +122,12 @@ int main() {
             MapDraw(map, surfaceWindow);
             CharacterDraw(sacha, surfaceWindow);
 
-            for (int i = 0; i < N_PIKACHU; i++) {
-                CharacterDraw(pikachu[i], surfaceWindow);
+            TList temp = pikachu;
+            while (!IsEmpty(temp))
+            {
+                Character* character  = Head(temp);
+                CharacterDraw(character,surfaceWindow);
+                temp = Rest(temp);
             }
 
             SDL_UpdateWindowSurface(window);
@@ -131,11 +138,17 @@ int main() {
     /* Nettoyage */
     CharacterFree(sacha);
 
-    for (int i = 0; i < N_PIKACHU; i++) {
-        CharacterFree(pikachu[i]);
+    TList temp = pikachu;
+    while (!IsEmpty(temp))
+    {
+        Character* character  = Head(temp);
+        CharacterFree(character);
+        temp = Rest(temp);
     }
 
     MapFree(map);
+
+    FreeList(pikachu);
 
     CleanupSDL(window);
     SDL_Quit();

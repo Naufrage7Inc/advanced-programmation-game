@@ -96,21 +96,25 @@ Coord CharacterGetCoord(Character *character) {
     return character->position;
 }
 
-bool isThereCharacterAtPosition(const Coord position,
+void CharacterSetCoord(Character* character, Coord position) {
+    character->position = position;
+}
+
+bool IsThereCharacterAtPosition(const Coord position,
                                 Character  *character,
-                                Character **characters,
+                                TList characters,
                                 int         n) {
-    if (n < 0) {
+    if (IsEmpty(characters)) {
         return false;
     } else {
         if ((CharacterGetCoord(character).x == position.x) &&
             (CharacterGetCoord(character).y == position.y)) {
             return true;
-        } else if ((CharacterGetCoord(characters[n]).x == position.x) &&
-                   (CharacterGetCoord(characters[n]).y == position.y)) {
+        } else if ((CharacterGetCoord((Character*)Head(characters)).x == position.x) &&
+                   (CharacterGetCoord((Character*)Head(characters)).y == position.y)) {
             return true;
         } else {
-            return isThereCharacterAtPosition(position,
+            return IsThereCharacterAtPosition(position,
                                               character,
                                               characters,
                                               n - 1);
