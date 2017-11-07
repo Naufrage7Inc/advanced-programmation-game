@@ -9,6 +9,7 @@
 #include "engine.h"
 #include "character.h"
 #include "map.h"
+#include "liste.h"
 
 
 int n_malloc;
@@ -144,6 +145,11 @@ int main() {
     printf("n_free   = %i\n", n_free);
 
 
+<<<<<<< Updated upstream
     /* Si on arrive jusqu'ici, c'est génial */
     return EXIT_SUCCESS;
+=======
+        /* Si on arrive jusqu'ici, c'est génial */
+        return EXIT_SUCCESS;//
+>>>>>>> Stashed changes
 }
