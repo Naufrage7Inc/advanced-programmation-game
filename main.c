@@ -10,17 +10,14 @@
 #include "character.h"
 #include "map.h"
 #include "liste.h"
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 
 int n_malloc;
 int n_free;
 
 int main() {
-        n_malloc = 0;
-        n_free = 0;
+    n_malloc = 0;
+    n_free   = 0;
 
 
     /* Initialisation du temps */
@@ -60,14 +57,17 @@ int main() {
 
 
     for (int i = 0; i < N_PIKACHU; i++) {
-        pikachu = Create(CharacterCreate("images/pikachu.bmp",CoordCreate(0,0)),pikachu);
-        Character* character = Head (pikachu);
+        pikachu = Create(CharacterCreate("images/pikachu.bmp", CoordCreate(0, 0)),
+                         pikachu);
+        Character *character = Head(pikachu);
 
         do {
-           CharacterSetCoord(character,CoordCreate(rand() % N_BLOCKS_X,rand() % N_BLOCKS_Y));
+            CharacterSetCoord(character,
+                              CoordCreate(rand() % N_BLOCKS_X,
+                                          rand() % N_BLOCKS_Y));
         }
-         while (IsThereCharacterAtPosition(CharacterGetCoord(character), sacha,
-                                            pikachu, i - 1));
+        while (IsThereCharacterAtPosition(CharacterGetCoord(character), sacha,
+                                          pikachu, i - 1));
     }
 
 
@@ -126,10 +126,11 @@ int main() {
             CharacterDraw(sacha, surfaceWindow);
 
             TList temp = pikachu;
+
             while (!IsEmpty(temp))
             {
-                Character* character  = Head(temp);
-                CharacterDraw(character,surfaceWindow);
+                Character *character = Head(temp);
+                CharacterDraw(character, surfaceWindow);
                 temp = Rest(temp);
             }
 
@@ -142,9 +143,10 @@ int main() {
     CharacterFree(sacha);
 
     TList temp = pikachu;
+
     while (!IsEmpty(temp))
     {
-        Character* character  = Head(temp);
+        Character *character = Head(temp);
         CharacterFree(character);
         temp = Rest(temp);
     }

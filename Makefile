@@ -6,7 +6,7 @@ all: clean game
 %.o: %.c
 	$(CXX) -g -c $< -o obj/$@
 
-game: main.o engine.o character.o map.o tile.o
+game: main.o engine.o character.o map.o tile.o liste.o
 	@echo ""
 	@echo "** Building the game **"
 	@echo ""
