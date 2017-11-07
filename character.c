@@ -84,13 +84,11 @@ void CharacterSetCoord( Character *character, Coord position ) {
 }
 
 bool IsThereCharacterAtPosition( const Coord position, Character *character, TList characters ) {
-    if ( IsEmpty ( characters ) ) {
-        return false;
-    } else {
-        if ( ( CharacterGetCoord ( character ).x == position.x ) && ( CharacterGetCoord ( character ).y == position.y ) ) {
-            return true;
-        } else if ( ( CharacterGetCoord ( (Character *)Head ( characters ) ).x == position.x ) &&
-                    ( CharacterGetCoord ( (Character *)Head ( characters ) ).y == position.y ) ) {
+    if ( ( CharacterGetCoord ( character ).x == position.x ) && ( CharacterGetCoord ( character ).y == position.y ) ) {
+        return true;
+    } else if ( !IsEmpty ( characters ) ) {
+        if ( ( CharacterGetCoord ( (Character *)Head ( characters ) ).x == position.x ) &&
+             ( CharacterGetCoord ( (Character *)Head ( characters ) ).y == position.y ) ) {
             return true;
         } else {
             return IsThereCharacterAtPosition ( position, character, Rest ( characters ) );
