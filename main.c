@@ -53,26 +53,28 @@ int main() {
         CharacterCreate("images/sacha.bmp",
                         CoordCreate(rand() % N_BLOCKS_X + 1,
                                     rand() % N_BLOCKS_Y + 1));
+    Character *pikachu;
 
-    bool generate = true;
-
-    while (generate) {
-        Character *pikachu = CharacterCreate("images/pikachu.bmp",
-                                             CoordCreate(2, 2));
-    }
+    do {
+        pikachu = CharacterCreate("images/pikachu.bmp",
+                                  CoordCreate(rand() % N_BLOCKS_X + 1,
+                                              rand() % N_BLOCKS_Y + 1));
+    } while (CharacterGetCoord(pikachu).x == CharacterGetCoord(sacha).x &&
+             CharacterGetCoord(pikachu).y == CharacterGetCoord(sacha).y);
 
 
     /* Boucle d'évènements */
     bool isOpen          = true;
     bool keyDown         = false;
+    bool firstTime       = true;
     bool mayUpdateScreen = true;
-    SDL_Event event;
 
     while (isOpen) {
         mayUpdateScreen = false;
 
 
         /* SDL_PollEvent est non bloquant */
+        SDL_Event event;
         SDL_PollEvent(&event);
 
 
@@ -109,7 +111,9 @@ int main() {
 
 
         /* Mise à jour de la fenêtre */
-        if (mayUpdateScreen) {
+        if (mayUpdateScreen || firstTime) {
+            firstTime = false;
+
             MapDraw(map, surfaceWindow);
             CharacterDraw(sacha,   surfaceWindow);
             CharacterDraw(pikachu, surfaceWindow);
@@ -128,7 +132,7 @@ int main() {
 
 
     printf("n_malloc = %i\n", n_malloc);
-    printf("n_free   = %i\n",   n_free);
+    printf("n_free   = %i\n", n_free);
 
 
     /* Si on arrive jusqu'ici, c'est génial */

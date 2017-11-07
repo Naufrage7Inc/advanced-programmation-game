@@ -92,6 +92,6 @@ void CharacterFree(Character *character) {
     free_trace(character);
 }
 
-Coord CharacterGetCoord(Character *character) const {
+Coord CharacterGetCoord(Character *character) {
     return character->position;
 }

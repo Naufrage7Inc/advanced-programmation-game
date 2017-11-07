@@ -45,10 +45,11 @@ void CharacterTeleport(Character *character);
 
 
 /* Permet de libérer de la mémoire */
-void  CharacterFree(Character *character);
+void CharacterFree(Character *character);
 
 
-Coord CharacterGetCoord(Character *character) const;
+/* Permet de récupérer la position du joueur */
+Coord CharacterGetCoord(Character *character);
 
 
 #endif // CHARACTER_H_INCLUDED
