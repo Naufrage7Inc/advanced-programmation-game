@@ -106,7 +106,7 @@ SDL_Surface* SurfaceCreate(const int w, const int h) {
     gmask = 0x00ff0000;
     bmask = 0x0000ff00;
     amask = 0x000000ff;
-    #else  /* if SDL_BYTEORDER == SDL_BIG_ENDIAN */
+    #else /* if SDL_BYTEORDER == SDL_BIG_ENDIAN */
     rmask = 0x000000ff;
     gmask = 0x0000ff00;
     bmask = 0x00ff0000;
@@ -114,4 +114,8 @@ SDL_Surface* SurfaceCreate(const int w, const int h) {
     #endif /* if SDL_BYTEORDER == SDL_BIG_ENDIAN */
 
     return SDL_CreateRGBSurface(0, w, h, 32, rmask, gmask, bmask, amask);
+}
+
+int GetDistance(const Coord a, const Coord b) {
+    return abs(a.x - b.x) + (a.y - b.y);
 }

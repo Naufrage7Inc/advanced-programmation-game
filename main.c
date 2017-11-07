@@ -59,10 +59,8 @@ int main() {
             pikachu[i] = CharacterCreate("images/pikachu.bmp",
                                          CoordCreate(rand() % N_BLOCKS_X,
                                                      rand() % N_BLOCKS_Y));
-        } while (CharacterGetCoord(pikachu[i]).x ==
-                 CharacterGetCoord(sacha).x &&
-                 CharacterGetCoord(pikachu[i]).y ==
-                 CharacterGetCoord(sacha).y);
+        } while (isThereCharacterAtPosition(CharacterGetCoord(pikachu[i]), sacha,
+                                            pikachu, i - 1));
     }
 
 

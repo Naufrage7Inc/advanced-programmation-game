@@ -76,4 +76,9 @@ SDL_Surface* SurfaceCreate(const int w,
                            const int h);
 
 
+/* */
+int GetDistance(const Coord a,
+                const Coord b);
+
+
 #endif // ENGINE_H_INCLUDED

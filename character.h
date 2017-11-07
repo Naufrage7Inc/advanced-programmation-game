@@ -52,4 +52,11 @@ void CharacterFree(Character *character);
 Coord CharacterGetCoord(Character *character);
 
 
+/* */
+bool isThereCharacterAtPosition(const Coord position,
+                                Character  *character,
+                                Character **characters,
+                                int         n);
+
+
 #endif // CHARACTER_H_INCLUDED

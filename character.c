@@ -95,3 +95,25 @@ void CharacterFree(Character *character) {
 Coord CharacterGetCoord(Character *character) {
     return character->position;
 }
+
+bool isThereCharacterAtPosition(const Coord position,
+                                Character  *character,
+                                Character **characters,
+                                int         n) {
+    if (n < 0) {
+        return false;
+    } else {
+        if ((CharacterGetCoord(character).x == position.x) &&
+            (CharacterGetCoord(character).y == position.y)) {
+            return true;
+        } else if ((CharacterGetCoord(characters[n]).x == position.x) &&
+                   (CharacterGetCoord(characters[n]).y == position.y)) {
+            return true;
+        } else {
+            return isThereCharacterAtPosition(position,
+                                              character,
+                                              characters,
+                                              n - 1);
+        }
+    }
+}
