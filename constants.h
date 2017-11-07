@@ -12,6 +12,8 @@
 
 #define WINDOW_TITLE "Projet programmation nécéssaire"
 
+#define N_PIKACHU 3
+
 extern int n_free;
 extern int n_malloc;
 

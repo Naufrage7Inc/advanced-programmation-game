@@ -49,18 +49,21 @@ int main() {
 
     /* Création de la carte et du personnage */
     Map *map         = MapCreate("images/ground.bmp");
-    Character *sacha =
-        CharacterCreate("images/sacha.bmp",
-                        CoordCreate(rand() % N_BLOCKS_X + 1,
-                                    rand() % N_BLOCKS_Y + 1));
-    Character *pikachu;
+    Character *sacha = CharacterCreate("images/sacha.bmp",
+                                       CoordCreate(rand() % N_BLOCKS_X,
+                                                   rand() % N_BLOCKS_Y));
+    Character **pikachu = (Character **)malloc(sizeof(Character *) * 3);
 
-    do {
-        pikachu = CharacterCreate("images/pikachu.bmp",
-                                  CoordCreate(rand() % N_BLOCKS_X + 1,
-                                              rand() % N_BLOCKS_Y + 1));
-    } while (CharacterGetCoord(pikachu).x == CharacterGetCoord(sacha).x &&
-             CharacterGetCoord(pikachu).y == CharacterGetCoord(sacha).y);
+    for (int i = 0; i < N_PIKACHU; i++) {
+        do {
+            pikachu[i] = CharacterCreate("images/pikachu.bmp",
+                                         CoordCreate(rand() % N_BLOCKS_X,
+                                                     rand() % N_BLOCKS_Y));
+        } while (CharacterGetCoord(pikachu[i]).x ==
+                 CharacterGetCoord(sacha).x &&
+                 CharacterGetCoord(pikachu[i]).y ==
+                 CharacterGetCoord(sacha).y);
+    }
 
 
     /* Boucle d'évènements */
@@ -115,8 +118,12 @@ int main() {
             firstTime = false;
 
             MapDraw(map, surfaceWindow);
-            CharacterDraw(sacha,   surfaceWindow);
-            CharacterDraw(pikachu, surfaceWindow);
+            CharacterDraw(sacha, surfaceWindow);
+
+            for (int i = 0; i < N_PIKACHU; i++) {
+                CharacterDraw(pikachu[i], surfaceWindow);
+            }
+
             SDL_UpdateWindowSurface(window);
         }
     }
@@ -124,7 +131,11 @@ int main() {
 
     /* Nettoyage */
     CharacterFree(sacha);
-    CharacterFree(pikachu);
+
+    for (int i = 0; i < N_PIKACHU; i++) {
+        CharacterFree(pikachu[i]);
+    }
+
     MapFree(map);
 
     CleanupSDL(window);
