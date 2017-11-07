@@ -45,7 +45,10 @@ void CharacterTeleport(Character *character);
 
 
 /* Permet de libérer de la mémoire */
-void CharacterFree(Character *character);
+void  CharacterFree(Character *character);
+
+
+Coord CharacterGetCoord(Character *character) const;
 
 
 #endif // CHARACTER_H_INCLUDED
