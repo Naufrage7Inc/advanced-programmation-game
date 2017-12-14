@@ -10,9 +10,9 @@
 #define WINDOW_WIDTH N_BLOCKS_X * SIZE_BLOCK
 #define WINDOW_HEIGHT N_BLOCKS_Y * SIZE_BLOCK
 
-#define WINDOW_TITLE "Projet programmation nécéssaire"
+#define WINDOW_TITLE "PikaChasse"
 
-#define N_PIKACHU 5
+#define N_PIKACHU 8
 
 extern int n_free;
 extern int n_malloc;
