@@ -1,6 +1,8 @@
 LIBS=-lSDL2 -lSDL2_ttf -lSDL2_mixer
 CXX := gcc
 
+Release: all
+
 all: clean game
 
 %.o: %.c
