@@ -12,9 +12,7 @@
 
 #define WINDOW_TITLE "PikaChasse"
 
-#define N_PIKACHU 8
+#define N_PIKACHU 5
 
-extern int n_free;
-extern int n_malloc;
 
 #endif // CONSTANTS_H_INCLUDED

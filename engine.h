@@ -23,14 +23,6 @@ typedef struct {
 } Size;
 
 
-/* Permet de tracer les appels à malloc */
-void* malloc_trace ( size_t __size );
-
-
-/* Permet de tracer les appels à free */
-void free_trace ( void *__ptr );
-
-
 /* Permet d'initialiser la SDL */
 bool InitSDL ( );
 

@@ -5,16 +5,6 @@
 #include "engine.h"
 
 
-void* malloc_trace( size_t __size ) {
-    n_malloc++;
-    return malloc ( __size );
-}
-
-void free_trace( void *__ptr ) {
-    n_free++;
-    free ( __ptr );
-}
-
 bool InitSDL( ) {
     if ( SDL_Init ( SDL_INIT_VIDEO ) < 0 ) {
         fprintf ( stderr, "Impossible d'initialiser la SDL : %s\n", SDL_GetError ( ) );
@@ -38,7 +28,7 @@ bool CreateWindow( SDL_Window **window, const int    width, const int    height,
 bool CreateWindowSurface( SDL_Surface **surface, SDL_Window *window ) {
     *surface = SDL_GetWindowSurface ( window );
 
-    if ( surface == NULL ) {
+    if ( *surface == NULL ) {
         fprintf ( stderr, "Impossible de créer la surface de la fenêtre : %s\n", SDL_GetError ( ) );
         return false;
     }
