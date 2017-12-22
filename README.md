@@ -97,3 +97,25 @@ Le module Tile permet la manipulation directe d'un bloc composant la carte : cr�
   
 ### Les petites structures
 Pour mener à bien ce projet, nous avons intégré quelques structures de base comme Coord ( structure définie par un couple (*x*, *y*) ) et Size ( structure définie par une *longueur* et une *hauteur* ) par exemple.
+
+# Compilation sous Linux
+## Compilation de la SDL2
+Télécharger le code source disponible à cette adresse : https://www.libsdl.org/download-2.0.php
+Une fois le dossier extrait, configurez le projet avec la commande ./configure
+Ensuite, compilez avec make et installez le tout avec la commande sudo make install
+
+## Compilation de SDL2_ttf
+Télécharger le code source disponible à cette adresse : https://www.libsdl.org/projects/SDL_ttf/
+Une fois le dossier extrait, configurez le projet avec la commande ./configure
+Ensuite, compilez avec make et installez le tout avec la commande sudo make inst
+all
+
+## Compilation de SDL2_mixer
+Télécharger le code source disponible à cette adresse : https://www.libsdl.org/projects/SDL_mixer/
+Une fois le dossier extrait, configurez le projet avec la commande ./configure
+Ensuite, compilez avec make et installez le tout avec la commande sudo make inst
+all
+
+## Compilation du projet
+Compilez le projet avec la commande make puis lancez le jeu avec la commande : bin/game
+Dans le cas où vous n'avez pas configuré le chemin des librairies, lancez le jeu avec : LD_LIBRARY_PATH=/usr/local/lib bin/game
