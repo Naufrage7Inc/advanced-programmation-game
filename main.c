@@ -5,7 +5,7 @@
 
 
 /* Pour utiliser les fonctions _s ( sécurisées ) du C, à commenter si erreur de compilation */
-#define USE_SECURE
+//#define USE_SECURE
 
 
 /* En-têtes standards */
@@ -20,8 +20,8 @@
 
 /* En-têtes SDL2 */
 #include <SDL2/SDL.h>
-#include <SDL_mixer.h>
-#include <SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL_ttf.h>
 
 
 /* En-têtes du projet */

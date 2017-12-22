@@ -1,4 +1,4 @@
-LIBS=-lSDL2-2.0
+LIBS=-lSDL2 -lSDL2_ttf -lSDL2_mixer
 CXX := gcc
 
 all: clean game
@@ -6,7 +6,7 @@ all: clean game
 %.o: %.c
 	$(CXX) -g -c $< -o obj/$@
 
-game: main.o engine.o character.o map.o tile.o liste.o
+game: main.o engine.o character.o map.o tile.o list.o
 	@echo ""
 	@echo "** Building the game **"
 	@echo ""
