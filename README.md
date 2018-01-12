@@ -8,14 +8,11 @@ Vous incarnez un personnage célèbre personnage du nom de Sacha. Grâce à de l
   
 ### Avancement
 Ce qui est possible :
- - Création de la carte, chargement depuis un fichier et affichage
- - Création du personnage, affichage et déplacement ( basique )
-
-Ce qui sera bientôt possible :
- - Gestion des animations du personnage ( effet de marche )
+ - Création de la carte et affichage
+ - Création du personnage, affichage et déplacement
  - Création, affichage et gestion des Pokémons
  - Création du menu principal
-  
+ - Gestion des scores et des meilleurs joueurs !  
 
 ### Module Engine
 Le module Engine apporte plusieurs fonctions facilitant la gestion d'erreurs, l'utilisation de la SDL, ... Un ensemble de fonctions bien pratique !
