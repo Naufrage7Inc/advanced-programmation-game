@@ -631,8 +631,7 @@ int main(int argc, char *argv[]) {
         /* On affiche le menu*/
         if (displayMenu(window, surfaceWindow)) {
             /* Le joueur joue, à la fin on récupère son score */
-            //int steps = playGame(window, surfaceWindow);
-            int steps = 12;
+            int steps = playGame(window, surfaceWindow);
 
             if (steps >= 0) {
                 if (!displayScore(window, surfaceWindow, steps)) {
