@@ -43,6 +43,7 @@ void ModifyRest( TList a, TList b ) {
     a->next = b;
 }
 
+/* Permet de supprimer un élément de la liste */
 TList DeleteItem( TList item, TList list ) {
     if ( !IsEmpty( list ) ) {
         if ( list == item ) {

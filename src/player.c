@@ -6,7 +6,7 @@
 #include "player.h"
 
 
-/* Il doit y avoir au moins un élément dans la liste */
+/* Permet de chercher et de supprimer le minimum de la liste, il doit y avoir au moins un élément dans la liste */
 TList findAndDeleteMin(TList *input) {
     TList min = *input;
     TList before = CreateEmpty();
@@ -35,7 +35,7 @@ TList findAndDeleteMin(TList *input) {
     return min;
 }
 
-
+/* Permet de retourne la liste inversé */
 TList invert(TList input) {
     TList temp = input;
     TList output = CreateEmpty();
@@ -50,7 +50,7 @@ TList invert(TList input) {
     return output;
 }
 
-
+/* Permet de trier la liste de manière décroissante */
 TList sort(TList input) {
     TList output = CreateEmpty();
 
@@ -63,7 +63,7 @@ TList sort(TList input) {
     return invert(output);
 }
 
-
+/* Permet de sauvegarder les scores dans la variable score */
 void saveScore(int score) {
     system("clear");
 

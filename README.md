@@ -21,10 +21,10 @@ Ce qui sera bientôt possible :
 Le module Engine apporte plusieurs fonctions facilitant la gestion d'erreurs, l'utilisation de la SDL, ... Un ensemble de fonctions bien pratique !
   
   - *struct* **Coord** {  int x, int y }  
-  Structure pour contenir une coordonnée représentée par un point X et un point Y.
+    Structure pour contenir une coordonnée représentée par un point X et un point Y.
   
   - *struct* **Size** { int w, int h }  
-  Strucutre pour contenir une taille représentée par sa longueur et sa hauteur.
+    Strucutre pour contenir une taille représentée par sa longueur et sa hauteur.
   
   - *bool* **InitSDL** ( )  
     Permet d'initialiser la SDL en mode vidéo. Retourne vrai en cas de réussite.
@@ -54,7 +54,7 @@ Le module Engine apporte plusieurs fonctions facilitant la gestion d'erreurs, l'
     Retourne une surface vierge de longueur *w* et de hauteur *h*.
   
   - *int* **GetDistance** ( const Coord a, const Coord b )  
-  Permet de retourner la valeur de la distance entre a et b.
+    Permet de retourner la valeur de la distance entre a et b.
 ### Module Character
 Le module Character permet la manipulation directe d'un personnage : création, déplacement, ... 
 
@@ -98,30 +98,31 @@ Le module permet la manipulation directe d'une liste : Primitives (Verifier si e
     Permet de définir un élèment de la liste qui contient un pointeur sur l'élèment et un pointeur sur le prochain élèment de la liste.
     
   - *bool*  **IsEmpty** ( TList list )  
-  Permet de vérifier si la liste est vide.
+    Permet de vérifier si la liste est vide.
   
   - *void** **Head** ( TList list )  
-  Permet de retourner le pointeur du premier élèment de la liste.
+    Permet de retourner le pointeur du premier élèment de la liste.
   
   - *TList* **Rest** ( TList list )  
-  Retourne le reste des élèments de la liste sans le premier.
+    Retourne le reste des élèments de la liste sans le premier.
   
   - *TList* **CreateEmpty** ()  
-  Permet de créer une liste vide.
+    Permet de créer une liste vide.
   
   - *TList* **Create** ( void *ptr, TList list )  
-  Permet de Créer une liste.
+    Permet de Créer une liste.
   
   - *void* **ModifyHead** ( void *ptr, TList list )  
-  Permet de modifier la première valeur de la liste.
+    Permet de modifier la première valeur de la liste.
   
   - *void*  **ModifyRest** ( TList a, TList b )  
-  Permet de modifier le reste de la liste.
+    Permet de modifier le reste de la liste.
   
   - *TList* **DeleteItem** ( TList item, TList list )  
+    Permet de supprimer un élément de la liste.
   
   - *void*  **FreeList** ( TList list )  
-  Permet de libérer la mémoire une liste.
+    Permet de libérer la mémoire une liste.
   
 ### Module Tile
 Le module Tile permet la manipulation directe d'un bloc composant la carte : création et identification du bloc ( traversable ou non )
@@ -136,7 +137,25 @@ Le module Tile permet la manipulation directe d'un bloc composant la carte : cr�
     Retourne un bloc ayant pour surface *surface* où *passability* représente sa franchissabilité sur la carte.
   
   - *void* **TileFree** ( Tile *tile )  
-  Permet de libérer un bloc.
+    Permet de libérer un bloc.
+  
+### Module Player
+Le module Player permet la sauvegarde des scores des joueurs et d'ainsi connaître le meilleur score.
+
+  - *struct* **Player** { char* pseudo, int score }
+    Structure qui permet de stocker le résultat d'un joueur.
+    
+  - *Tlist* **findAndDeleteMin** ( TList *input )
+    Permet de chercher et de supprimer le minimum de la liste, il doit y avoir au moins un élément dans la liste.
+    
+  - *Tlist* **invert** ( Tlist input )
+    Permet de retourner la liste inversé.
+    
+  - *Tlist* **sort** ( Tlist input )
+    Permet de trier la liste de manière décroissante.
+    
+  - *void* **saveScore** ( int score )
+    Permet de sauvegarder les scores dans la variable score.
   
 ### Les petites structures
 Pour mener à bien ce projet, nous avons intégré quelques structures de base comme Coord ( structure définie par un couple (*x*, *y*) ) et Size ( structure définie par une *longueur* et une *hauteur* ) par exemple.

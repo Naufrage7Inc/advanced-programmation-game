@@ -34,6 +34,7 @@ void  ModifyHead( void *ptr, TList list );
 /* Permet de modifier le reste de la liste */
 void  ModifyRest( TList a, TList b );
 
+/* Permet de supprimer un élément de la liste */
 TList DeleteItem( TList item, TList list );
 
 /* Permet de libérer une liste */
