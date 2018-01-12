@@ -13,7 +13,7 @@ typedef struct {
 } Player;
 
 
-TList sort(TList list);
+/* Enregistre le score du joueurs et affiche les meilleurs scores */
 void saveScore(int score);
 
 

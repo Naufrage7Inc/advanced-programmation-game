@@ -10,11 +10,9 @@ Vous incarnez un personnage célèbre personnage du nom de Sacha. Grâce à de l
 Ce qui est possible :
  - Création de la carte, chargement depuis un fichier et affichage
  - Création du personnage, affichage et déplacement ( basique )
-
-Ce qui sera bientôt possible :
- - Gestion des animations du personnage ( effet de marche )
- - Création, affichage et gestion des Pokémons
- - Création du menu principal
+ - Gestion des menus
+ - Gestion des joueurs ( meilleurs scores )
+ - Déplacement des ennemis
   
 
 ### Module Engine
@@ -46,6 +44,9 @@ Le module Engine apporte plusieurs fonctions facilitant la gestion d'erreurs, l'
     
   - *SDL_Surface** **SurfaceCreate** ( const int w, const int h )  
     Retourne une surface vierge de longueur *w* et de hauteur *h*.
+    
+  - *int* **GetDistance** ( const Coord a, const Coord b )
+    Retourne la distance entre la position a et b ( en nombre de bloc )
   
 ### Module Character
 Le module Character permet la manipulation directe d'un personnage : création, déplacement, ... 
@@ -84,7 +85,7 @@ Le module Map permet la manipulation directe d'une carte : création, affichage,
     Permet de libérer la mémoire utilisée par la carte *map*.
   
 ### Module Tile
-Le module Tile permet la manipulation directe d'un bloc composant la carte : création et identification du bloc ( traversable ou non )
+Le module Tile permet la manipulation directe d'un bloc composant la carte : création et identification du bloc
 
   - *enum* **Passability** { NO_PASSABLE , PASSABLE }  
     Permet de définir une structure *Tile* qui contient une *surface* ( image du bloc ), et un *entier* ( permet de définir si le bloc est franchissable ).
@@ -94,6 +95,18 @@ Le module Tile permet la manipulation directe d'un bloc composant la carte : cr�
   
   - *Tile** **TileCreate** ( SDL_Surface* surface, const Passability passability )  
     Retourne un bloc ayant pour surface *surface* où *passability* représente sa franchissabilité sur la carte.
+    
+### Module Player
+Le module Player permet la manipulation des joueurs ( sauvegarde et lecture des meilleurs scores )
+
+  - *enum* **Player** { char*, int }
+    Permet de définir une structure *Player* pour contenir le pseudo du joueur et son score.
+    
+  - *void* **saveScore** ( int score )
+     Enregistre le score du joueur et affiche les meilleurs scores dans la console.
+     
+   - findAndDeleteMin, invert et sort
+     Utilisées uniquement pour faciliter la lecture de la fonction de sauvegarde **saveScore**.
   
 ### Les petites structures
 Pour mener à bien ce projet, nous avons intégré quelques structures de base comme Coord ( structure définie par un couple (*x*, *y*) ) et Size ( structure définie par une *longueur* et une *hauteur* ) par exemple.
@@ -119,4 +132,4 @@ Installez le tout avec la commande : *sudo make install*
 
 ## Compilation du projet
 Compilez le projet avec la commande make puis lancez le jeu avec la commande : *bin/game*  
-Dans le cas où vous n'avez pas configuré le chemin des librairies, lancez le jeu avec : *LD_LIBRARY_PATH=/usr/local/lib bin/game*  
+Dans le cas où vous n'avez pas configuré le chemin des bibliothèques, lancez le jeu avec : *LD_LIBRARY_PATH=/usr/local/lib bin/game*  

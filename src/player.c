@@ -6,12 +6,13 @@
 #include "player.h"
 
 
-/* Il doit y avoir au moins un élément dans la liste */
+/* Retourne et supprime le minimum d'une liste */
 TList findAndDeleteMin(TList *input) {
     TList min = *input;    
     TList before = CreateEmpty();    
     TList temp = Rest(*input);
     
+    /* Recherche du minimum */
     while ( !IsEmpty(temp) ) {
         Player *p = Head(temp), *pMin= Head(min);
         
@@ -23,6 +24,8 @@ TList findAndDeleteMin(TList *input) {
         temp = Rest(temp);
     }
     
+    
+    /* Destruction des liens */
     TList next = Rest(min);
     ModifyRest(min, CreateEmpty());
     
@@ -36,6 +39,7 @@ TList findAndDeleteMin(TList *input) {
 }
 
 
+/* Inverse l'ordre d'une liste */
 TList invert(TList input) {
     TList temp = input;
     TList output = CreateEmpty();
@@ -51,6 +55,7 @@ TList invert(TList input) {
 }
 
 
+/* Trie une liste dans l'ordre décroissant */
 TList sort(TList input) {
     TList output = CreateEmpty();
     
@@ -64,6 +69,7 @@ TList sort(TList input) {
 }
 
 
+/* Enregistre le score du joueur et affiche les meilleurs scores */
 void saveScore(int score) {
     system("clear");
     
@@ -79,10 +85,12 @@ void saveScore(int score) {
 	FILE *fHandle = fopen("resources/scores.txt", "r+");
 	
 	if ( fHandle != NULL ) {
+	    /* Sauvegarde du score */
 	    fseek(fHandle, 0, SEEK_END);
 	    fprintf(fHandle, "%s %i\n", pseudo, score);
 	    fseek(fHandle, 0, SEEK_SET);
 	
+	    /* Lecture du fichier */
 	    int ret = 2;
 	    while ( ret == 2 ) {	
 	        Player *p = (Player*)malloc(sizeof(Player)); 
@@ -97,8 +105,9 @@ void saveScore(int score) {
 	    }
 	    
 	    fclose(fHandle);    
-        
 	    listPlayers = sort(listPlayers);
+	} else {
+	    printf("Le fichier scores.txt n'existe pas ! Créez un fichier nommé score.txt dans le repertoire \"resources\".\n");
 	}
 
 	printf("\n--- TOP 5 ---\n");
@@ -110,8 +119,7 @@ void saveScore(int score) {
 		i++;
 	}
 
-	printf("\n");
-	printf("Veuillez retourner sur la fenêtre de jeu pour continuer.\n");
+	printf("\nVeuillez retourner sur la fenêtre de jeu pour continuer.\n");
 
 	FreeList(listPlayers);
 }
