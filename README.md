@@ -142,19 +142,19 @@ Le module Tile permet la manipulation directe d'un bloc composant la carte : cr�
 ### Module Player
 Le module Player permet la sauvegarde des scores des joueurs et d'ainsi connaître le meilleur score.
 
-  - *struct* **Player** { char* pseudo, int score }
+  - *struct* **Player** { char* pseudo, int score }  
     Structure qui permet de stocker le résultat d'un joueur.
     
-  - *Tlist* **findAndDeleteMin** ( TList *input )
+  - *Tlist* **findAndDeleteMin** ( TList *input )  
     Permet de chercher et de supprimer le minimum de la liste, il doit y avoir au moins un élément dans la liste.
     
-  - *Tlist* **invert** ( Tlist input )
+  - *Tlist* **invert** ( Tlist input )  
     Permet de retourner la liste inversé.
     
-  - *Tlist* **sort** ( Tlist input )
+  - *Tlist* **sort** ( Tlist input )  
     Permet de trier la liste de manière décroissante.
     
-  - *void* **saveScore** ( int score )
+  - *void* **saveScore** ( int score )  
     Permet de sauvegarder les scores dans la variable score.
   
 ### Les petites structures
