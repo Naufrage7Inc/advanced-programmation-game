@@ -45,11 +45,11 @@ void CharacterFree ( Character *character );
 /* Permet de récupérer la position du joueur */
 Coord CharacterGetCoord ( Character *character );
 
-
+/* Modifie la position du personnage *character* */
 /* */
 void CharacterSetCoord ( Character *character, Coord position );
 
-
+/* Permet de savoir si un pikachu est à la position donné */
 /* */
 bool IsThereCharacterAtPosition ( const Coord position, Character *character, TList characters );
 

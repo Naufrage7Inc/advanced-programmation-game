@@ -4,8 +4,7 @@
 #include "constants.h"
 #include "engine.h"
 
-
-/* Initialise la SDL2 */
+/* Permet d'initialiser la SDL en mode vidéo. Retourne vrai en cas de réussite */
 bool InitSDL( ) {
     if ( SDL_Init ( SDL_INIT_VIDEO ) < 0 ) {
         fprintf ( stderr, "Impossible d'initialiser la SDL : %s\n", SDL_GetError ( ) );
@@ -15,8 +14,7 @@ bool InitSDL( ) {
     return true;
 }
 
-
-/* Retourne une fenêtre SDL2 ouverte */
+/*  Permet de créer une fenêtre *window* de largeur *width*, de hauteur *height* et de titre *title*. Retourne vrai en cas de réussite */
 bool CreateWindow( SDL_Window **window, const int    width, const int    height, const char  *title ) {
     *window = SDL_CreateWindow ( title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN );
 
@@ -28,8 +26,7 @@ bool CreateWindow( SDL_Window **window, const int    width, const int    height,
     return true;
 }
 
-
-/* Retourne la surface de la fenêtre */
+/* Permet de récupérer la *surface* surface d'une fenêtre *window* créée. Retourne vrai en cas de réussite */
 bool CreateWindowSurface( SDL_Surface **surface, SDL_Window *window ) {
     *surface = SDL_GetWindowSurface ( window );
 
@@ -41,15 +38,13 @@ bool CreateWindowSurface( SDL_Surface **surface, SDL_Window *window ) {
     return true;
 }
 
-
-/* Termine proprement le fonctionnement de SDL */
+/* Permet de détruire la fenêtre *window* et décharger la SDL */
 void CleanupSDL( SDL_Window *window ) {
     SDL_DestroyWindow ( window );
     SDL_Quit ( );
 }
 
-
-/* Charge une image et affiche une erreur si problème */
+/* Retourne une image *imagePath* ( format .bmp ) */
 SDL_Surface* LoadBMP( const char *imagePath ) {
     SDL_Surface *surface = SDL_LoadBMP ( imagePath );
 
@@ -60,24 +55,21 @@ SDL_Surface* LoadBMP( const char *imagePath ) {
     return surface;
 }
 
-
-/* Retourne une coordonée */
+/* Retourne une coordonnée ( *x*, *y* ) */
 Coord CoordCreate( const int x, const int y ) {
     Coord coord = { x, y };
 
     return coord;
 }
 
-
-/* Retourne une taille */
+/* Retourne une taille de longueur *w* et de hauteur *h* */
 Size SizeCreate( const int w, const int h ) {
     Size size = { w, h };
 
     return size;
 }
 
-
-/* Retourne une ressource graphique à une position id */
+/* Retourne l'image de la ressource *id* depuis une surface *surface* ayant *nTilesX* tiles sur la longueur */
 SDL_Surface* SurfaceGetResource( SDL_Surface *surface, const int    nTilesX, const int    id ) {
     int x = id % nTilesX * SIZE_BLOCK;
     int y = id / nTilesX * SIZE_BLOCK;
@@ -92,8 +84,7 @@ SDL_Surface* SurfaceGetResource( SDL_Surface *surface, const int    nTilesX, con
     return returnSurface;
 }
 
-
-/* Retourne une surface de taille w x h */
+/* Retourne une surface vierge de longueur *w* et de hauteur *h* */
 SDL_Surface* SurfaceCreate( const int w, const int h ) {
     Uint32 rmask, gmask, bmask, amask;
 
@@ -112,8 +103,7 @@ SDL_Surface* SurfaceCreate( const int w, const int h ) {
     return SDL_CreateRGBSurface ( 0, w, h, 32, rmask, gmask, bmask, amask );
 }
 
-
-/* Retourne la distance entre la position a et b ( en nombre de bloc ) */
+/* Permet de retourner la valeur de la distance entre a et b */
 int GetDistance( const Coord a, const Coord b ) {
     return abs ( a.x - b.x ) + ( a.y - b.y );
 }

@@ -10,13 +10,21 @@ Vous incarnez un personnage célèbre personnage du nom de Sacha. Grâce à de l
 Ce qui est possible :
  - Création de la carte, chargement depuis un fichier et affichage
  - Création du personnage, affichage et déplacement ( basique )
- - Gestion des menus
- - Gestion des joueurs ( meilleurs scores )
- - Déplacement des ennemis
+
+Ce qui sera bientôt possible :
+ - Gestion des animations du personnage ( effet de marche )
+ - Création, affichage et gestion des Pokémons
+ - Création du menu principal
   
 
 ### Module Engine
 Le module Engine apporte plusieurs fonctions facilitant la gestion d'erreurs, l'utilisation de la SDL, ... Un ensemble de fonctions bien pratique !
+  
+  - *struct* **Coord** {  int x, int y }  
+  Structure pour contenir une coordonnée représentée par un point X et un point Y.
+  
+  - *struct* **Size** { int w, int h }  
+  Strucutre pour contenir une taille représentée par sa longueur et sa hauteur.
   
   - *bool* **InitSDL** ( )  
     Permet d'initialiser la SDL en mode vidéo. Retourne vrai en cas de réussite.
@@ -44,10 +52,9 @@ Le module Engine apporte plusieurs fonctions facilitant la gestion d'erreurs, l'
     
   - *SDL_Surface** **SurfaceCreate** ( const int w, const int h )  
     Retourne une surface vierge de longueur *w* et de hauteur *h*.
-    
-  - *int* **GetDistance** ( const Coord a, const Coord b )
-    Retourne la distance entre la position a et b ( en nombre de bloc )
   
+  - *int* **GetDistance** ( const Coord a, const Coord b )  
+  Permet de retourner la valeur de la distance entre a et b.
 ### Module Character
 Le module Character permet la manipulation directe d'un personnage : création, déplacement, ... 
 
@@ -83,9 +90,41 @@ Le module Map permet la manipulation directe d'une carte : création, affichage,
 
   - *void* **MapFree** ( Map* map )  
     Permet de libérer la mémoire utilisée par la carte *map*.
+    
+### Module List
+Le module permet la manipulation directe d'une liste : Primitives (Verifier si elle est vide, créer une liste, ... ), libération...
+
+  - *struct* **TListElem** struct TListElem { *ptr, *next}  
+    Permet de définir un élèment de la liste qui contient un pointeur sur l'élèment et un pointeur sur le prochain élèment de la liste.
+    
+  - *bool*  **IsEmpty** ( TList list )  
+  Permet de vérifier si la liste est vide.
+  
+  - *void** **Head** ( TList list )  
+  Permet de retourner le pointeur du premier élèment de la liste.
+  
+  - *TList* **Rest** ( TList list )  
+  Retourne le reste des élèments de la liste sans le premier.
+  
+  - *TList* **CreateEmpty** ()  
+  Permet de créer une liste vide.
+  
+  - *TList* **Create** ( void *ptr, TList list )  
+  Permet de Créer une liste.
+  
+  - *void* **ModifyHead** ( void *ptr, TList list )  
+  Permet de modifier la première valeur de la liste.
+  
+  - *void*  **ModifyRest** ( TList a, TList b )  
+  Permet de modifier le reste de la liste.
+  
+  - *TList* **DeleteItem** ( TList item, TList list )  
+  
+  - *void*  **FreeList** ( TList list )  
+  Permet de libérer la mémoire une liste.
   
 ### Module Tile
-Le module Tile permet la manipulation directe d'un bloc composant la carte : création et identification du bloc
+Le module Tile permet la manipulation directe d'un bloc composant la carte : création et identification du bloc ( traversable ou non )
 
   - *enum* **Passability** { NO_PASSABLE , PASSABLE }  
     Permet de définir une structure *Tile* qui contient une *surface* ( image du bloc ), et un *entier* ( permet de définir si le bloc est franchissable ).
@@ -95,18 +134,9 @@ Le module Tile permet la manipulation directe d'un bloc composant la carte : cr�
   
   - *Tile** **TileCreate** ( SDL_Surface* surface, const Passability passability )  
     Retourne un bloc ayant pour surface *surface* où *passability* représente sa franchissabilité sur la carte.
-    
-### Module Player
-Le module Player permet la manipulation des joueurs ( sauvegarde et lecture des meilleurs scores )
-
-  - *enum* **Player** { char*, int }
-    Permet de définir une structure *Player* pour contenir le pseudo du joueur et son score.
-    
-  - *void* **saveScore** ( int score )
-     Enregistre le score du joueur et affiche les meilleurs scores dans la console.
-     
-   - findAndDeleteMin, invert et sort
-     Utilisées uniquement pour faciliter la lecture de la fonction de sauvegarde **saveScore**.
+  
+  - *void* **TileFree** ( Tile *tile )  
+  Permet de libérer un bloc.
   
 ### Les petites structures
 Pour mener à bien ce projet, nous avons intégré quelques structures de base comme Coord ( structure définie par un couple (*x*, *y*) ) et Size ( structure définie par une *longueur* et une *hauteur* ) par exemple.
@@ -132,4 +162,4 @@ Installez le tout avec la commande : *sudo make install*
 
 ## Compilation du projet
 Compilez le projet avec la commande make puis lancez le jeu avec la commande : *bin/game*  
-Dans le cas où vous n'avez pas configuré le chemin des bibliothèques, lancez le jeu avec : *LD_LIBRARY_PATH=/usr/local/lib bin/game*  
+Dans le cas où vous n'avez pas configuré le chemin des librairies, lancez le jeu avec : *LD_LIBRARY_PATH=/usr/local/lib bin/game*  

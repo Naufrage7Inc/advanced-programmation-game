@@ -1,8 +1,7 @@
 #include "tile.h"
 #include "engine.h"
 
-
-/* Retourne un morceau de terrain */
+/* Permet de créer une variable de type Tile */
 Tile* TileCreate( SDL_Surface *surface ) {
     Tile *tile = (Tile *) malloc( sizeof( Tile ) );
 
@@ -11,8 +10,7 @@ Tile* TileCreate( SDL_Surface *surface ) {
     return tile;
 }
 
-
-/* Libère le morceau de terrain */
+/* Permet de libérer un Tile */
 void TileFree( Tile *tile ) {
     SDL_FreeSurface( tile->surface );
     free( tile );

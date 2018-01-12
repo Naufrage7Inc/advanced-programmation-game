@@ -7,8 +7,7 @@
 #include <SDL2/SDL.h>
 
 
-/* Structure pour contenir une coordonnée représentée par un point X et un point
-   Y */
+/* Structure pour contenir une coordonnée représentée par un point X et un point Y */
 typedef struct {
     int x;
     int y;
@@ -24,7 +23,7 @@ typedef struct {
 
 
 /* Permet d'initialiser la SDL */
-bool InitSDL ( );
+bool InitSDL ();
 
 
 /* Permet de créer une fenêtre graphique */
@@ -59,7 +58,7 @@ SDL_Surface* SurfaceGetResource ( SDL_Surface *surface, const int nTilesX, const
 SDL_Surface* SurfaceCreate ( const int w, const int h );
 
 
-/* Retourne la distance entre la position a et b ( en nombre de bloc ) */
+/* Permet de retourner la valeur de la distance entre a et b */
 int GetDistance ( const Coord a, const Coord b );
 
 
