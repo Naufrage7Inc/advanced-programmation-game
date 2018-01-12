@@ -30,6 +30,7 @@
 #include "character.h"
 #include "map.h"
 #include "list.h"
+#include "player.h"
 
 
 /*
@@ -43,11 +44,11 @@ bool displayMenu(SDL_Window* window, SDL_Surface* surfaceWindow) {
 
 
     /* Création du fond du menu */
-    SDL_Surface *surfaceMenu = LoadBMP("images/menu.bmp");
+    SDL_Surface *surfaceMenu = LoadBMP("resources/images/menu.bmp");
 
 
     /* Chargement de la police en taille 90 */
-    TTF_Font* font = TTF_OpenFont("polices/font.ttf", 90);
+    TTF_Font* font = TTF_OpenFont("resources/fonts/font.ttf", 90);
     SDL_Color colorWhite = { 255, 255, 255 };
     SDL_Color colorRed = { 255, 100, 100 };
 
@@ -58,7 +59,7 @@ bool displayMenu(SDL_Window* window, SDL_Surface* surfaceWindow) {
 
     /* Fermeture puis réouverture de la police en taille 65 */
     TTF_CloseFont(font);
-    font = TTF_OpenFont("polices/font.ttf", 65);
+    font = TTF_OpenFont("resources/fonts/font.ttf", 65);
 
 
     /* Création de textes en taille 65 */
@@ -82,7 +83,7 @@ bool displayMenu(SDL_Window* window, SDL_Surface* surfaceWindow) {
 
 
     /* Lecture de la musique */
-    Mix_Music *music = Mix_LoadMUS("sons/menu.wav");
+    Mix_Music *music = Mix_LoadMUS("resources/sounds/menu.wav");
     Mix_PlayMusic(music, -1);
 
 
@@ -174,25 +175,25 @@ bool displayMenu(SDL_Window* window, SDL_Surface* surfaceWindow) {
 */
 int playGame(SDL_Window* window, SDL_Surface* surfaceWindow) {
     /* Création de la carte et du personnage */
-    Map *map = MapCreate("images/ground.bmp");
-    Character *sacha = CharacterCreate("images/sacha.bmp", CoordCreate(rand() % N_BLOCKS_X, rand() % N_BLOCKS_Y));
+    Map *map = MapCreate("resources/images/ground.bmp");
+    Character *sacha = CharacterCreate("resources/images/sacha.bmp", CoordCreate(rand() % N_BLOCKS_X, rand() % N_BLOCKS_Y));
     TList pikachus = CreateEmpty();
 
 
     /* Chargement et lecture de la musique d'ambiance */
-    Mix_Music *music = Mix_LoadMUS("sons/sound.wav");
+    Mix_Music *music = Mix_LoadMUS("resources/sounds/sound.wav");
     Mix_PlayMusic(music, -1);
 
 
     /* Chargement des bruitages */
-    Mix_Chunk  *pika1 = Mix_LoadWAV("sons/pika_1.wav");
-    Mix_Chunk  *pika2 = Mix_LoadWAV("sons/pika_2.wav");
+    Mix_Chunk  *pika1 = Mix_LoadWAV("resources/sounds/pika_1.wav");
+    Mix_Chunk  *pika2 = Mix_LoadWAV("resources/sounds/pika_2.wav");
 
 
     /* Créations des pikachus dans la liste */
     for (int i = 0; i < N_PIKACHU; i++) {
         /* Créatio d'un pikachu dans la liste */
-        Character *character = CharacterCreate("images/pikachu.bmp", CoordCreate(0, 0));
+        Character *character = CharacterCreate("resources/images/pikachu.bmp", CoordCreate(0, 0));
         pikachus = Create(character, pikachus);
 
 
@@ -439,11 +440,11 @@ bool displayScore(SDL_Window* window, SDL_Surface* surfaceWindow, int steps) {
 
 
     /* Création du fond */
-    SDL_Surface *surfaceMenu = LoadBMP("images/menu.bmp");
+    SDL_Surface *surfaceMenu = LoadBMP("resources/images/menu.bmp");
 
 
     /* Chargement de la police en taille 90 + création de la couleur blanc */
-    TTF_Font* font = TTF_OpenFont("polices/font.ttf", 90);
+    TTF_Font* font = TTF_OpenFont("resources/fonts/font.ttf", 90);
     SDL_Color colorWhite = { 255, 255, 255 };
     SDL_Color colorRed = { 255, 100, 100 };
 
@@ -458,9 +459,15 @@ bool displayScore(SDL_Window* window, SDL_Surface* surfaceWindow, int steps) {
     SDL_Surface* textScore = TTF_RenderText_Blended(font, score, colorWhite);
 
 
-    /* Fermeture et chargement de la police en taille 65 */
+	/* Message demandant à l'utilisateur d'aller sur la console pour saisir son score */
     TTF_CloseFont(font);
-    font = TTF_OpenFont("polices/font.ttf", 65);
+    font = TTF_OpenFont("resources/fonts/font.ttf", 25);
+    SDL_Surface* textConsole = TTF_RenderText_Blended(font, "Veuillez retournez sur la console !", colorWhite);
+
+
+	/* Fermeture et chargement de la police en taille 65 */
+    TTF_CloseFont(font);
+    font = TTF_OpenFont("resources/fonts/font.ttf", 65);
 
 
     /* Création des textes en taille 65 */
@@ -472,6 +479,7 @@ bool displayScore(SDL_Window* window, SDL_Surface* surfaceWindow, int steps) {
     SDL_Rect positionTextScore = { WINDOW_WIDTH / 2 - textScore->w / 2, WINDOW_HEIGHT / 2 - textScore->h / 2 - 150, 0, 0 };
     SDL_Rect positionTextAgain = { WINDOW_WIDTH / 2 - textAgain->w / 2, WINDOW_HEIGHT / 2 - textAgain->h / 2 + 75, 0, 0 };
     SDL_Rect positionTextQuit = { WINDOW_WIDTH / 2 - textQuit->w / 2, WINDOW_HEIGHT / 2 - textQuit->h / 2 + 165, 0, 0 };
+	SDL_Rect positionTextConsole = { WINDOW_WIDTH / 2 - textConsole->w / 2, WINDOW_HEIGHT / 2 - textScore->h / 2, 0, 0 };
 
 
     /* Affichage à l'écran */
@@ -479,8 +487,12 @@ bool displayScore(SDL_Window* window, SDL_Surface* surfaceWindow, int steps) {
     SDL_BlitSurface(textScore, NULL, surfaceWindow, &positionTextScore);
     SDL_BlitSurface(textAgain, NULL, surfaceWindow, &positionTextAgain);
     SDL_BlitSurface(textQuit, NULL, surfaceWindow, &positionTextQuit);
+	SDL_BlitSurface(textConsole, NULL, surfaceWindow, &positionTextConsole);
 
     SDL_UpdateWindowSurface(window);
+
+
+	saveScore(steps);
 
 
     /* Boucle de contrôle */
@@ -543,8 +555,10 @@ bool displayScore(SDL_Window* window, SDL_Surface* surfaceWindow, int steps) {
 
 
         /* Mise à jour des surfaces qui changent */
-        SDL_BlitSurface(textAgain, NULL, surfaceWindow, &positionTextAgain);
-        SDL_BlitSurface(textQuit, NULL, surfaceWindow, &positionTextQuit);
+        SDL_BlitSurface(surfaceMenu, NULL, surfaceWindow, NULL);
+		SDL_BlitSurface(textScore, NULL, surfaceWindow, &positionTextScore);
+		SDL_BlitSurface(textAgain, NULL, surfaceWindow, &positionTextAgain);
+		SDL_BlitSurface(textQuit, NULL, surfaceWindow, &positionTextQuit);
 
         SDL_UpdateWindowSurface(window);
     }
@@ -556,6 +570,7 @@ bool displayScore(SDL_Window* window, SDL_Surface* surfaceWindow, int steps) {
     SDL_FreeSurface(textScore);
     SDL_FreeSurface(textAgain);
     SDL_FreeSurface(textQuit);
+	SDL_FreeSurface(textConsole);
 
 
     return play;
@@ -616,8 +631,8 @@ int main(int argc, char *argv[]) {
         /* On affiche le menu*/
         if (displayMenu(window, surfaceWindow)) {
             /* Le joueur joue, à la fin on récupère son score */
-            int steps = playGame(window, surfaceWindow);
-
+            //int steps = playGame(window, surfaceWindow);
+            int steps = 12;
 
             if (steps >= 0) {
                 if (!displayScore(window, surfaceWindow, steps)) {

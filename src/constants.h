@@ -12,7 +12,7 @@
 
 #define WINDOW_TITLE "PikaChasse"
 
-#define N_PIKACHU 5
+#define N_PIKACHU 0
 
 
 #endif // CONSTANTS_H_INCLUDED
