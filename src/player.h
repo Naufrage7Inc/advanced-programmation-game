@@ -13,7 +13,7 @@ typedef struct {
 } Player;
 
 
-void sort(TList list, TList sorted);
+TList sort(TList list);
 void saveScore(int score);
 
 

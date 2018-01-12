@@ -9,17 +9,17 @@
 TList findAndDeleteMin(TList *input) {
     TList min = *input;    
     TList before = CreateEmpty();    
-    *input = Rest(*input);
+    TList temp = Rest(*input);
     
-    while ( !IsEmpty(*input) ) {
-        Player *p = Head(*input), *pMin = Head(min);
+    while ( !IsEmpty(temp) ) {
+        Player *p = Head(temp), *pMin= Head(min);
         
         if ( p->score < pMin->score ) {
             before = min;
-            min = *input;
+            min = temp;
         }
 
-        *input = Rest(*input);
+        temp = Rest(temp);
     }
     
     TList next = Rest(min);
@@ -35,18 +35,37 @@ TList findAndDeleteMin(TList *input) {
 }
 
 
-void sort(TList input, TList output) {
-    output = Create(findAndDeleteMin(&input), CreateEmpty());
-    printf("%i\n", ((Player*)Head(output))->score);
+TList invert(TList input) {
+    TList temp = input;
+    TList output = CreateEmpty();
     
-    /*TList temp = input;
-    while (!IsEmpty(temp)) {
-        printf("%d\n", ((Player*)Head(temp))->score);
+    while ( !IsEmpty(temp) ) {
+        output = Create(Head(temp), output);
         temp = Rest(temp);
-    }*/
+    }
+    
+    FreeList(input);
+    
+    return output;
 }
 
+
+TList sort(TList input) {
+    TList output = CreateEmpty();
+    
+    while ( !IsEmpty(input) ) {
+        TList min = findAndDeleteMin(&input);
+        ModifyRest(min, output);
+        output = min;
+    }
+    
+    return invert(output);
+}
+
+
 void saveScore(int score) {
+    system("clear");
+    
 	printf("Félicitations ! Vous avez attrapé tous les Pikachus sauvages !\n");
 	printf("Votre score ( = nombre de pas ) est %i.\n", score);
 	printf("Moins vous faites de pas, plus vous êtes efficace !\n");
@@ -59,6 +78,10 @@ void saveScore(int score) {
 	FILE *fHandle = fopen("resources/scores.txt", "r+");
 	
 	if ( fHandle != NULL ) {
+	    fseek(fHandle, 0, SEEK_END);
+	    fprintf(fHandle, "%s %i\n", pseudo, score);
+	    fseek(fHandle, 0, SEEK_SET);
+	
 	    int ret = 2;
 	    while ( ret == 2 ) {	
 	        Player *p = (Player*)malloc(sizeof(Player)); 
@@ -72,32 +95,23 @@ void saveScore(int score) {
 	            free(p);
 	    }
 	    
-	    fclose(fHandle);
-
-        TList sorted = CreateEmpty();
+	    fclose(fHandle);    
         
-        TList temp = listPlayers;
-        while (!IsEmpty(temp)) {
-            printf("%d\n", ((Player*)Head(temp))->score);
-            temp = Rest(temp);
-        }
-        
-        printf("---\n");
-        
-        
-	    sort(listPlayers, sorted);
+	    listPlayers = sort(listPlayers);
 	}
 
-	/*printf("\n--- TOP 5 ---\n");
+	printf("\n--- TOP 5 ---\n");
 	TList temp = listPlayers;
-	while ( !IsEmpty(temp) ) {
+	int i = 0;
+	while ( !IsEmpty(temp) && i < 5 ) {
 		printf("   %s %i\n", ((Player*)Head(temp))->pseudo, ((Player*)Head(temp))->score);
 		temp = Rest(temp);
+		i++;
 	}
 
 	printf("\n");
 	printf("Veuillez retourner sur la fenêtre de jeu pour continuer.\n");
 
-	FreeList(listPlayers);*/
+	FreeList(listPlayers);
 }
 
