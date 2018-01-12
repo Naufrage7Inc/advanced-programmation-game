@@ -180,3 +180,6 @@ Installez le tout avec la commande : *sudo make install*
 N'oubliez pas de créer un dossier bin et obj à la racine du projet ( même niveau que ce Makefile ) sinon la compilation provoquera une erreur !
 Compilez le projet avec la commande make puis lancez le jeu avec la commande : *bin/game*  
 Dans le cas où vous n'avez pas configuré le chemin des librairies, lancez le jeu avec : *LD_LIBRARY_PATH=/usr/local/lib bin/game*  
+
+## Crédits
+Porjet développé par Théo Barragué <theo.barrague2@etu.univ-lorraine.fr> et Vincent Bir <vincent.bir1@etu.univ-lorraine.fr>
