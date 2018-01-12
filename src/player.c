@@ -112,7 +112,16 @@ void saveScore(int score) {
 
 	printf("\n");
 	printf("Veuillez retourner sur la fenêtre de jeu pour continuer.\n");
+	
+	temp = listPlayers;
+	while ( !IsEmpty(temp) ) {
+	    free(((Player*)Head(temp))->pseudo);
+	    free(Head(temp));
+	    temp = Rest(temp);
+	}
 
 	FreeList(listPlayers);
+	
+	free(pseudo);
 }
 
