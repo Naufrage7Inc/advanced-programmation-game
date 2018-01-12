@@ -59,7 +59,7 @@ SDL_Surface* SurfaceGetResource ( SDL_Surface *surface, const int nTilesX, const
 SDL_Surface* SurfaceCreate ( const int w, const int h );
 
 
-/* Retourne la distance entre la position a et b ( en nombre de bloc ) */
+/* */
 int GetDistance ( const Coord a, const Coord b );
 
 

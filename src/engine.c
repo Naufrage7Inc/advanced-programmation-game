@@ -5,7 +5,6 @@
 #include "engine.h"
 
 
-/* Initialise la SDL2 */
 bool InitSDL( ) {
     if ( SDL_Init ( SDL_INIT_VIDEO ) < 0 ) {
         fprintf ( stderr, "Impossible d'initialiser la SDL : %s\n", SDL_GetError ( ) );
@@ -15,8 +14,6 @@ bool InitSDL( ) {
     return true;
 }
 
-
-/* Retourne une fenêtre SDL2 ouverte */
 bool CreateWindow( SDL_Window **window, const int    width, const int    height, const char  *title ) {
     *window = SDL_CreateWindow ( title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN );
 
@@ -28,8 +25,6 @@ bool CreateWindow( SDL_Window **window, const int    width, const int    height,
     return true;
 }
 
-
-/* Retourne la surface de la fenêtre */
 bool CreateWindowSurface( SDL_Surface **surface, SDL_Window *window ) {
     *surface = SDL_GetWindowSurface ( window );
 
@@ -41,15 +36,11 @@ bool CreateWindowSurface( SDL_Surface **surface, SDL_Window *window ) {
     return true;
 }
 
-
-/* Termine proprement le fonctionnement de SDL */
 void CleanupSDL( SDL_Window *window ) {
     SDL_DestroyWindow ( window );
     SDL_Quit ( );
 }
 
-
-/* Charge une image et affiche une erreur si problème */
 SDL_Surface* LoadBMP( const char *imagePath ) {
     SDL_Surface *surface = SDL_LoadBMP ( imagePath );
 
@@ -60,24 +51,18 @@ SDL_Surface* LoadBMP( const char *imagePath ) {
     return surface;
 }
 
-
-/* Retourne une coordonée */
 Coord CoordCreate( const int x, const int y ) {
     Coord coord = { x, y };
 
     return coord;
 }
 
-
-/* Retourne une taille */
 Size SizeCreate( const int w, const int h ) {
     Size size = { w, h };
 
     return size;
 }
 
-
-/* Retourne une ressource graphique à une position id */
 SDL_Surface* SurfaceGetResource( SDL_Surface *surface, const int    nTilesX, const int    id ) {
     int x = id % nTilesX * SIZE_BLOCK;
     int y = id / nTilesX * SIZE_BLOCK;
@@ -92,8 +77,6 @@ SDL_Surface* SurfaceGetResource( SDL_Surface *surface, const int    nTilesX, con
     return returnSurface;
 }
 
-
-/* Retourne une surface de taille w x h */
 SDL_Surface* SurfaceCreate( const int w, const int h ) {
     Uint32 rmask, gmask, bmask, amask;
 
@@ -112,8 +95,6 @@ SDL_Surface* SurfaceCreate( const int w, const int h ) {
     return SDL_CreateRGBSurface ( 0, w, h, 32, rmask, gmask, bmask, amask );
 }
 
-
-/* Retourne la distance entre la position a et b ( en nombre de bloc ) */
 int GetDistance( const Coord a, const Coord b ) {
     return abs ( a.x - b.x ) + ( a.y - b.y );
 }

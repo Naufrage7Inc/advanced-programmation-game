@@ -12,8 +12,6 @@ typedef struct {
 
 /* Permet de créer un bloc */
 Tile* TileCreate( SDL_Surface *surface );
-
-/* Libère un bloc */
 void  TileFree( Tile *tile );
 
 

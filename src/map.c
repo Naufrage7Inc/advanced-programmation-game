@@ -3,7 +3,6 @@
 #include "map.h"
 
 
-/* Retourne une carte initialisée */
 Map* MapCreate( const char *imagePath ) {
     Map *map = malloc( sizeof( Map ) );
 
@@ -26,8 +25,6 @@ Map* MapCreate( const char *imagePath ) {
     return map;
 }
 
-
-/* Affiche la carte a l'écran */
 void MapDraw( const Map *map, SDL_Surface *surface ) {
     for ( int y = 0; y < N_BLOCKS_Y; y++ ) {
         for ( int x = 0; x < N_BLOCKS_X; x++ ) {
@@ -38,8 +35,6 @@ void MapDraw( const Map *map, SDL_Surface *surface ) {
     }
 }
 
-
-/* Libère entièrement une carte */
 void MapFree( Map *map ) {
     for ( int y = 0; y < N_BLOCKS_Y; y++ ) {
         for ( int x = 0; x < N_BLOCKS_X; x++ ) {

@@ -2,7 +2,6 @@
 #include "character.h"
 
 
-
 Character* CharacterCreate( const char *imagePath, const Coord position ) {
     Character *character = malloc( sizeof( Character ) );
 
